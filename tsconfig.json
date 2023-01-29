@@ -9,8 +9,8 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "paths": {
-      "layout": [
-        "dist/layout"
+      "@nuvera/layout": [
+        "dist/@nuvera/layout"
       ]
     },
     "noImplicitReturns": true,

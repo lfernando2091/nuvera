@@ -1,0 +1,15 @@
+mat-drawer-container {
+  //height: 100vh;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.sidenav-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 300px;
+}
+
+mat-drawer {
+  padding: 20px;
+}

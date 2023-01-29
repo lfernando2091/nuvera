@@ -9,8 +9,10 @@
     "build:layout": "ng build layout",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "test:layout": "ng test layout"
+    "test:layout": "ng test layout",
+    "publish:layout": "npm publish ./dist/@nuvera/layout --access public"
   },
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@angular/animations": "^15.1.0",

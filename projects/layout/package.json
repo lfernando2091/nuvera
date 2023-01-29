@@ -1,13 +1,33 @@
 {
-  "name": "layout",
-  "version": "0.0.1",
+  "name": "@nuvera/layout",
+  "version": "0.0.0",
+  "description": "This is a Material UI 15 Portal",
+  "keywords": ["md", "mui", "material"],
+  "author": {
+    "name": "Fernando Mendez",
+    "email": "lfernando2091@gmail.com",
+    "url": "https://www.linkedin.com/in/lfernando2091/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lfernando2091/nuvera"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "peerDependencies": {
     "@angular/common": "^15.1.0",
     "@angular/core": "^15.1.0",
+    "@angular/cdk": "^15.1.2",
     "@angular/material": "^15.1.2"
   },
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "exports": {
+    ".": {
+      "sass": "./_index.scss"
+    }
   },
   "sideEffects": false
 }

@@ -3,9 +3,9 @@ import {Component} from "@angular/core";
 @Component({
   selector: 'md-dashboard-layout',
   template: `
-    <p>
-      layout works!
-    </p>
+    <md-dashboard-container>
+
+    </md-dashboard-container>
   `,
   styleUrls: ["./md.dashboard.layout.scss"]
 })
