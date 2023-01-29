@@ -3,6 +3,8 @@
 @use './components/md.dashboard.container-theme' as dash-container-theme;
 @use './components/md.header.component-theme' as header-theme;
 @use './components/md.footer.component-theme' as footer-theme;
+@use './components/md.nav-link.component-theme' as nav-link-theme;
+@use './components/md.link-button.component-theme' as link-button-theme;
 
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
@@ -10,6 +12,8 @@
     @include dash-container-theme.color($theme);
     @include header-theme.color($theme);
     @include footer-theme.color($theme);
+    @include nav-link-theme.color($theme);
+    @include link-button-theme.color($theme);
   }
 
   $typography-config: mat.get-typography-config($theme);

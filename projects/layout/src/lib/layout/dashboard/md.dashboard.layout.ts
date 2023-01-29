@@ -1,10 +1,11 @@
 import {Component, Input, ViewChild} from "@angular/core";
 import {MdDashboardContainer} from "../../containers";
+import {LinkSection} from "../../components";
 
 @Component({
   selector: 'md-dashboard-layout',
   template: `
-    <md-dashboard-container>
+    <md-dashboard-container [sections]="sections">
       <md-header role="heading" class="single-row">
         <button (click)="onOpenDrawer()" mat-icon-button aria-label="Open Menu">
           <mat-icon>menu</mat-icon>
@@ -26,6 +27,9 @@ import {MdDashboardContainer} from "../../containers";
 export class MdDashboardLayout {
   @Input()
   title = "App Title";
+
+  @Input()
+  sections?: LinkSection[];
 
   @ViewChild(MdDashboardContainer)
   public dashboard: MdDashboardContainer | null = null;

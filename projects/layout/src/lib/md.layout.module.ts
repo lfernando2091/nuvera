@@ -8,12 +8,13 @@ import {MatButtonModule} from "@angular/material/button";
 import {
   MdBodyComponent,
   MdFooterComponent,
-  MdHeaderComponent,
+  MdHeaderComponent, MdLinkButtonComponent, MdNavLinkComponent,
   MdOneColumnComponent,
   MdTopMenuComponent
 } from "./components";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
+import {RouterModule} from "@angular/router";
 
 const COMPONENTS = [
   MdLayoutComponent,
@@ -23,7 +24,9 @@ const COMPONENTS = [
   MdBodyComponent,
   MdFooterComponent,
   MdOneColumnComponent,
-  MdTopMenuComponent
+  MdTopMenuComponent,
+  MdNavLinkComponent,
+  MdLinkButtonComponent
 ];
 
 const MATERIAL_UI = [
@@ -39,6 +42,7 @@ const MATERIAL_UI = [
   ],
   imports: [
     CommonModule,
+    RouterModule,
     ...MATERIAL_UI
   ],
   exports: [

@@ -9,4 +9,8 @@
     background-color: mat.get-color-from-palette($primary-palette, 50);
     color: mat.get-color-from-palette($primary-palette, 500);
   }
+
+  mat-drawer {
+    background-color: mat.get-color-from-palette($primary-palette, 50);
+  }
 }
