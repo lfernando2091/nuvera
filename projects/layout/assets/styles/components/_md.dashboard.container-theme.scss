@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '@angular/material/index' as mat;
+@use '@angular/material' as mat;
 
 @mixin color($theme) {
   $color-config: mat.get-color-config($theme);
@@ -8,12 +8,5 @@
   .sidenav-content {
     background-color: mat.get-color-from-palette($primary-palette, 50);
     color: mat.get-color-from-palette($primary-palette, 500);
-  }
-}
-
-@mixin theme($theme) {
-  $color-config: mat.get-color-config($theme);
-  @if $color-config != null {
-    @include color($theme);
   }
 }

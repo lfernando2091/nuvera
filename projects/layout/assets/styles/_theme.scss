@@ -1,0 +1,10 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use './components/md.dashboard.container-theme' as dash-container-theme;
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  @if $color-config != null {
+    @include dash-container-theme.color($theme);
+  }
+}
