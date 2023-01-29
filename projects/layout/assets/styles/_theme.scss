@@ -1,10 +1,19 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
 @use './components/md.dashboard.container-theme' as dash-container-theme;
+@use './components/md.header.component-theme' as header-theme;
+@use './components/md.footer.component-theme' as footer-theme;
 
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   @if $color-config != null {
     @include dash-container-theme.color($theme);
+    @include header-theme.color($theme);
+    @include footer-theme.color($theme);
+  }
+
+  $typography-config: mat.get-typography-config($theme);
+  @if $typography-config != null {
+    @include header-theme.typography($theme);
   }
 }

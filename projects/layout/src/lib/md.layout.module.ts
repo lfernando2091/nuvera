@@ -5,16 +5,32 @@ import {MdDashboardLayout} from "./layout";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {CommonModule} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
+import {
+  MdBodyComponent,
+  MdFooterComponent,
+  MdHeaderComponent,
+  MdOneColumnComponent,
+  MdTopMenuComponent
+} from "./components";
+import {MatIconModule} from "@angular/material/icon";
+import {MatMenuModule} from "@angular/material/menu";
 
 const COMPONENTS = [
   MdLayoutComponent,
   MdDashboardContainer,
-  MdDashboardLayout
+  MdDashboardLayout,
+  MdHeaderComponent,
+  MdBodyComponent,
+  MdFooterComponent,
+  MdOneColumnComponent,
+  MdTopMenuComponent
 ];
 
 const MATERIAL_UI = [
   MatSidenavModule,
-  MatButtonModule
+  MatButtonModule,
+  MatIconModule,
+  MatMenuModule
 ];
 
 @NgModule({

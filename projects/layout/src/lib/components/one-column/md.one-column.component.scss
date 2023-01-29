@@ -1,0 +1,8 @@
+:host {
+  flex: 1 0;
+  min-width: 0;
+
+  &.space {
+    padding: 2.25rem 2.25rem .75rem;
+  }
+}
