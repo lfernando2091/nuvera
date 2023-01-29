@@ -9,7 +9,10 @@ mat-drawer-container {
   min-width: 300px;
 }
 
-mat-drawer {
+.mat-drawer {
   padding-top: 20px;
   padding-bottom: 20px;
+  &.radius {
+    border-radius: 0 16px 16px 0;
+  }
 }

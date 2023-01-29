@@ -36,8 +36,12 @@
       cursor: default;
       pointer-events: none;
     }
-    & > .pre-icon{ }
-    & > .label{ }
+    & > .pre-icon{
+      margin-right: 16px;
+    }
+    & > .label{
+      margin-right: 16px;
+    }
     & > .flex-content-view{
       flex: 1 1 auto;
       display: inline-flex;

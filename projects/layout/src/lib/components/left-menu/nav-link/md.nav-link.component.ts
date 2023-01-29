@@ -37,9 +37,26 @@ export interface LinkSection {
         <ng-template [ngIf]="!section.links">
           <a [@inItem]="'in'" class="item" [routerLink]="section.link" routerLinkActive="active">
             <md-link-button disabled routerLinkActive="active">
+              <mat-icon preIcon>{{ section.icon }}</mat-icon>
               <div label>{{ section.label }}</div>
             </md-link-button>
           </a>
+        </ng-template>
+        <ng-template [ngIf]="section.links">
+          <div class="section-name">{{ section.label.toUpperCase() }}</div>
+          <ng-template ngFor let-sectLinks [ngForOf]="section.links">
+            <ng-template [ngIf]="!sectLinks.subLinks">
+              <a [@inItem]="'in'" class="item" [routerLink]="sectLinks.link" routerLinkActive="active">
+                <md-link-button disabled routerLinkActive="active">
+                  <mat-icon preIcon>{{ sectLinks.icon }}</mat-icon>
+                  <div label>{{ sectLinks.label }}</div>
+                </md-link-button>
+              </a>
+            </ng-template>
+            <ng-template [ngIf]="sectLinks.subLinks">
+              <md-sublink [link]="sectLinks"></md-sublink>
+            </ng-template>
+          </ng-template>
         </ng-template>
       </ng-template>
     </ng-template>

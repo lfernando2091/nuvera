@@ -7,15 +7,23 @@
   $accent-palette:  map.get($color-config, 'accent');
 
   md-nav-link {
-    & > .item {
+    .item {
       color: mat.get-color-from-palette($primary-palette, 600);
 
       &:hover {
         background-color: mat.get-color-from-palette($primary-palette, 200, 0.5);
       }
 
-      &.active {
-        color: mat.get-contrast-color-from-palette($accent-palette, 600);
+      &.active { }
+
+      &::before {
+        background: mat.get-color-from-palette($accent-palette, 100);
+      }
+    }
+
+    .collapse-item {
+      &:hover, &.active{
+        background-color: mat.get-color-from-palette($primary-palette, 200, 0.5);
       }
 
       &::before {

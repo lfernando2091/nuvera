@@ -1,5 +1,5 @@
 import {Component, Input, ViewChild} from "@angular/core";
-import {MdDashboardContainer} from "../../containers";
+import {MdDashboardContainer, MdDashboardContainerService, ScreenView} from "../../containers";
 import {LinkSection} from "../../components";
 
 @Component({
@@ -7,7 +7,7 @@ import {LinkSection} from "../../components";
   template: `
     <md-dashboard-container [sections]="sections">
       <md-header role="heading" class="single-row">
-        <button (click)="onOpenDrawer()" mat-icon-button aria-label="Open Menu">
+        <button *ngIf="allowOpenMenu" (click)="onOpenDrawer()" mat-icon-button aria-label="Open Menu">
           <mat-icon>menu</mat-icon>
         </button>
         <span>{{ title }}</span>
@@ -33,6 +33,16 @@ export class MdDashboardLayout {
 
   @ViewChild(MdDashboardContainer)
   public dashboard: MdDashboardContainer | null = null;
+
+  allowOpenMenu = this.dashboardContainerService.screen !== ScreenView.Big;
+
+  constructor(
+    private dashboardContainerService: MdDashboardContainerService
+  ) {
+    this.dashboardContainerService.eventScreen$.subscribe((res) => {
+      this.allowOpenMenu = res !== ScreenView.Big;
+    })
+  }
 
   async onOpenDrawer() {
     if(this.dashboard) {

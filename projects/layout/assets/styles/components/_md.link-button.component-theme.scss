@@ -4,15 +4,32 @@
 @mixin color($theme) {
   $color-config: mat.get-color-config($theme);
   $primary-palette: map.get($color-config, 'primary');
-  $accent-palette:  map.get($color-config, 'accent');
 
   md-link-button[disabled] {
     &.active button {
-      color: mat.get-contrast-color-from-palette($accent-palette, 600);
+      color: mat.get-color-from-palette($primary-palette, 900);
     }
 
     & button {
-      color: mat.get-contrast-color-from-palette($primary-palette, 600);
+      color: mat.get-color-from-palette($primary-palette, 800);
     }
+  }
+
+  .section-name {
+    color: mat.get-color-from-palette($primary-palette, 800);
+  }
+}
+
+@mixin typography($theme) {
+  $typography-config: mat.get-typography-config($theme);
+
+  md-link-button[disabled] {
+    & button {
+      @include mat.typography-level($typography-config, 'button');
+    }
+  }
+
+  .section-name {
+    @include mat.typography-level($typography-config, 'caption');
   }
 }

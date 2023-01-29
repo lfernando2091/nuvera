@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import { MdLayoutComponent } from './md.layout.component';
 import {MdDashboardContainer} from "./containers";
 import {MdDashboardLayout} from "./layout";
@@ -9,12 +9,14 @@ import {
   MdBodyComponent,
   MdFooterComponent,
   MdHeaderComponent, MdLinkButtonComponent, MdNavLinkComponent,
-  MdOneColumnComponent,
+  MdOneColumnComponent, MdSublinkComponent,
   MdTopMenuComponent
 } from "./components";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {RouterModule} from "@angular/router";
+import {LayoutModule} from "@angular/cdk/layout";
+import {MdDashboardContainerService} from "./containers/dashboard/md.dashboard.container.service";
 
 const COMPONENTS = [
   MdLayoutComponent,
@@ -26,7 +28,8 @@ const COMPONENTS = [
   MdOneColumnComponent,
   MdTopMenuComponent,
   MdNavLinkComponent,
-  MdLinkButtonComponent
+  MdLinkButtonComponent,
+  MdSublinkComponent
 ];
 
 const MATERIAL_UI = [
@@ -36,6 +39,10 @@ const MATERIAL_UI = [
   MatMenuModule
 ];
 
+const SERVICES = [
+  MdDashboardContainerService
+];
+
 @NgModule({
   declarations: [
     ...COMPONENTS
@@ -43,10 +50,23 @@ const MATERIAL_UI = [
   imports: [
     CommonModule,
     RouterModule,
+    LayoutModule,
     ...MATERIAL_UI
   ],
   exports: [
     ...COMPONENTS
+  ],
+  providers: [
+    ...SERVICES
   ]
 })
-export class MdLayoutModule { }
+export class MdLayoutModule {
+  // static forRoot(config: UserServiceConfig): ModuleWithProviders<MdLayoutModule> {
+  //   return {
+  //     ngModule: MdLayoutModule,
+  //     providers: [
+  //       {provide: MdDashboardContainerService, useValue: config }
+  //     ]
+  //   };
+  // }
+}

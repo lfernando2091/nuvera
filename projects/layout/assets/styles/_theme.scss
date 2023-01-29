@@ -19,5 +19,6 @@
   $typography-config: mat.get-typography-config($theme);
   @if $typography-config != null {
     @include header-theme.typography($theme);
+    @include link-button-theme.typography($theme);
   }
 }
