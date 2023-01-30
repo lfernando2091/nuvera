@@ -17,6 +17,7 @@ export enum ScreenView {
       <mat-drawer [mode]="drawerMode" [opened]="drawerOpened" [class.radius]="!drawerOpened">
         <md-nav-link [sections]="sections"></md-nav-link>
       </mat-drawer>
+      <md-rail-menu class="open" [sections]="sections"></md-rail-menu>
       <div class="sidenav-content">
         <ng-content select="md-header"></ng-content>
         <ng-content select="md-body"></ng-content>

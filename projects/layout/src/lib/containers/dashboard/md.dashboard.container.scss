@@ -1,5 +1,9 @@
 mat-drawer-container {
   display: inherit;
+
+  md-rail-menu.open + div.sidenav-content{
+    margin-left: 88px;;
+  }
 }
 
 .sidenav-content {

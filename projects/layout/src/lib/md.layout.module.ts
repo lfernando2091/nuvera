@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import { MdLayoutComponent } from './md.layout.component';
-import {MdDashboardContainer} from "./containers";
+import {MdDashboardContainer, MdDashboardContainerService} from "./containers";
 import {MdDashboardLayout} from "./layout";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {CommonModule} from "@angular/common";
@@ -9,14 +9,13 @@ import {
   MdBodyComponent,
   MdFooterComponent,
   MdHeaderComponent, MdLinkButtonComponent, MdNavLinkComponent,
-  MdOneColumnComponent, MdSublinkComponent,
+  MdOneColumnComponent, MdRailMenuComponent, MdSublinkComponent,
   MdTopMenuComponent
 } from "./components";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {RouterModule} from "@angular/router";
 import {LayoutModule} from "@angular/cdk/layout";
-import {MdDashboardContainerService} from "./containers/dashboard/md.dashboard.container.service";
 
 const COMPONENTS = [
   MdLayoutComponent,
@@ -29,7 +28,8 @@ const COMPONENTS = [
   MdTopMenuComponent,
   MdNavLinkComponent,
   MdLinkButtonComponent,
-  MdSublinkComponent
+  MdSublinkComponent,
+  MdRailMenuComponent
 ];
 
 const MATERIAL_UI = [

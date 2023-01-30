@@ -13,11 +13,15 @@ const routes: Routes = [{
       component: Home1Component,
     },
     {
-      path: 'm/home-2',
+      path: 'ma/home-2',
       component: Home2Component,
     },
     {
-      path: 'm/home-3',
+      path: 'ma/home-3',
+      component: Home2Component,
+    },
+    {
+      path: 'ma',
       component: Home2Component,
     },
   ]

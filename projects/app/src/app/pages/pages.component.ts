@@ -3,7 +3,7 @@ import {LinkSection} from "../../../../layout/src/lib/components";
 
 const NAV_MENU: LinkSection[] = [
   {
-    label: "Home", icon: "home", link: "/p"
+    label: "Home", icon: "home", link: "/home"
   },
   {
     label: "Analytics", icon: "bar_chart", link: "/p/analytics"
@@ -15,15 +15,15 @@ const NAV_MENU: LinkSection[] = [
     label: "Management", icon: "add_circle", link: "/p/ma", links: [
       {
         label: "Business", icon: "storefront", subLinks: [
-          { label: 'List', link: '/p/m/home-2' },
-          { label: 'Create', link: '/p/m/home-2' },
+          { label: 'List', link: '/p/ma/home-2' },
+          { label: 'Create', link: '/p/ma/home-2' },
           { label: 'Details', link: '/p/ma/business/d' },
           { label: 'Edit', link: '/p/ma/business/e' },
         ]
       },
       {
         label: "Partners", icon: "handshake", link: "", subLinks: [
-          { label: 'List', link: '/p/m/home-3' },
+          { label: 'List', link: '/p/ma/home-3' },
           { label: 'Details', link: '/p/ma/partners/d' },
           { label: 'Edit', link: '/p/ma/partners/e' },
         ]

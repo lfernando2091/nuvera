@@ -35,7 +35,7 @@ export interface LinkSection {
     <ng-template [ngIf]="sections">
       <ng-template ngFor let-section [ngForOf]="sections">
         <ng-template [ngIf]="!section.links">
-          <a [@inItem]="'in'" class="item" [routerLink]="section.link" routerLinkActive="active">
+          <a [@inItem]="'in'" class="item" [routerLink]="section.link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <md-link-button disabled routerLinkActive="active">
               <mat-icon preIcon>{{ section.icon }}</mat-icon>
               <div label>{{ section.label }}</div>
@@ -44,6 +44,12 @@ export interface LinkSection {
         </ng-template>
         <ng-template [ngIf]="section.links">
           <div class="section-name">{{ section.label.toUpperCase() }}</div>
+          <a [@inItem]="'in'" class="item" [routerLink]="section.link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <md-link-button disabled routerLinkActive="active">
+              <mat-icon preIcon>apps</mat-icon>
+              <div label>Menu</div>
+            </md-link-button>
+          </a>
           <ng-template ngFor let-sectLinks [ngForOf]="section.links">
             <ng-template [ngIf]="!sectLinks.subLinks">
               <a [@inItem]="'in'" class="item" [routerLink]="sectLinks.link" routerLinkActive="active">
