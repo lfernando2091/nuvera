@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {LinkSection} from "../nav-link/md.nav-link.component";
+import { LinkSection } from "../nav-link/md.nav-link.model";
 
 @Component({
   selector: 'md-rail-menu',

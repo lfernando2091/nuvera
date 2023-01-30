@@ -1,24 +1,6 @@
 import {Component, Input} from "@angular/core";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-
-export interface SubLinks {
-  label: string;
-  link: string;
-}
-
-export interface Links {
-  label: string;
-  icon: string;
-  link?: string;
-  subLinks?: SubLinks[];
-}
-
-export interface LinkSection {
-  label: string;
-  icon: string;
-  link: string;
-  links?: Links[];
-}
+import {LinkSection} from "./md.nav-link.model";
 
 @Component({
   selector: 'md-nav-link',

@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, Input} from "@angular/core";
-import {Links} from "../nav-link/md.nav-link.component";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs";
+import {Links} from "../nav-link/md.nav-link.model";
 
 @Component({
   selector: 'md-sublink',
