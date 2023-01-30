@@ -17,7 +17,7 @@ export enum ScreenView {
       <mat-drawer [mode]="drawerMode" [opened]="drawerOpened" [class.radius]="!drawerOpened">
         <md-nav-link [sections]="sections"></md-nav-link>
       </mat-drawer>
-      <md-rail-menu class="open" [sections]="sections"></md-rail-menu>
+      <md-rail-menu [class.open]="showRailMenu" [sections]="sections"></md-rail-menu>
       <div class="sidenav-content">
         <ng-content select="md-header"></ng-content>
         <ng-content select="md-body"></ng-content>
@@ -35,6 +35,7 @@ export class MdDashboardContainer {
 
   drawerMode: MatDrawerMode = "over";
   drawerOpened = false;
+  showRailMenu = false;
 
   smallWidth = '(max-width: 959.98px)';
   normalWidth = '(min-width: 960px) and (max-width: 1534.98px)';
@@ -66,6 +67,7 @@ export class MdDashboardContainer {
           this.drawerMode = "side";
           this.drawerOpened = true;
         }
+        this.showRailMenu = this.dashboardContainerService.screen === ScreenView.Normal;
       }
     });
   }
