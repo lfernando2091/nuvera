@@ -16,6 +16,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {RouterModule} from "@angular/router";
 import {LayoutModule} from "@angular/cdk/layout";
+import {MatCardModule} from "@angular/material/card";
+import {MatDividerModule} from "@angular/material/divider";
 
 const COMPONENTS = [
   MdLayoutComponent,
@@ -36,7 +38,9 @@ const MATERIAL_UI = [
   MatSidenavModule,
   MatButtonModule,
   MatIconModule,
-  MatMenuModule
+  MatMenuModule,
+  MatCardModule,
+  MatDividerModule
 ];
 
 const SERVICES = [

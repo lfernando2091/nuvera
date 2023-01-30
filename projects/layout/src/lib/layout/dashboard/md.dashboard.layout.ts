@@ -1,6 +1,6 @@
 import {Component, Input, ViewChild} from "@angular/core";
 import {MdDashboardContainer, MdDashboardContainerService, ScreenView} from "../../containers";
-import {LinkSection} from "../../components";
+import {HeaderConfig, LinkSection} from "../../components";
 
 @Component({
   selector: 'md-dashboard-layout',
@@ -12,12 +12,17 @@ import {LinkSection} from "../../components";
         </button>
         <span>{{ title }}</span>
         <span class="toolbar-spacer"></span>
-        <md-top-menu></md-top-menu>
+        <md-top-menu
+          [icon]="headerConfig.icon"
+          [user]="headerConfig.user"
+          [menu]="headerConfig.menu"
+          [logoutUrl]="headerConfig.logoutUrl"
+        ></md-top-menu>
       </md-header>
       <md-body>
         <ng-content></ng-content>
         <md-footer>
-          <h4>Footer</h4>
+          <ng-content select="[footer]"></ng-content>
         </md-footer>
       </md-body>
     </md-dashboard-container>
@@ -30,6 +35,9 @@ export class MdDashboardLayout {
 
   @Input()
   sections?: LinkSection[];
+
+  @Input()
+  headerConfig?: HeaderConfig;
 
   @ViewChild(MdDashboardContainer)
   public dashboard: MdDashboardContainer | null = null;

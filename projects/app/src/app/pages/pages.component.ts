@@ -43,8 +43,12 @@ const NAV_MENU: LinkSection[] = [
   template: `
     <md-dashboard-layout [sections]="menu">
       <md-one-column class="space">
+        <h1>Home</h1>
         <router-outlet></router-outlet>
       </md-one-column>
+      <div footer>
+        <h4>Footer</h4>
+      </div>
     </md-dashboard-layout>
   `,
   styleUrls: ['./pages.component.scss']
