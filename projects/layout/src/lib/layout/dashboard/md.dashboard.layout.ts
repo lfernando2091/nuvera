@@ -13,10 +13,8 @@ import {HeaderConfig, LinkSection} from "../../components";
         <span>{{ title }}</span>
         <span class="toolbar-spacer"></span>
         <md-top-menu
-          [icon]="headerConfig.icon"
-          [user]="headerConfig.user"
-          [menu]="headerConfig.menu"
-          [logoutUrl]="headerConfig.logoutUrl"
+          *ngIf="headerConfig"
+          [headerConfig]="headerConfig"
         ></md-top-menu>
       </md-header>
       <md-body>

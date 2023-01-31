@@ -1,23 +1,23 @@
 import {Component, Input} from "@angular/core";
-import {HeaderMenu, User} from "./md.top-menu.model";
+import {HeaderConfig} from "./md.top-menu.model";
 
 @Component({
   selector: 'md-top-menu',
   template: `
     <button mat-icon-button [matMenuTriggerFor]="menuHeader" aria-label="Menu Icon">
-      <mat-icon>{{ icon }}</mat-icon>
+      <mat-icon>{{ headerConfig.icon }}</mat-icon>
     </button>
-    <mat-menu #menuHeader>
-      <mat-card-header *ngIf="user">
-        <mat-card-title>{{ user.user_name }}</mat-card-title>
-        <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
-      </mat-card-header>
+    <mat-menu class="md-context-menu-content" #menuHeader>
+      <div *ngIf="headerConfig.user" class="md-profile">
+        <div class=".mat-h4">{{ headerConfig.user.user_name }}</div>
+        <div class=".mat-h4">{{ headerConfig.user.email }}</div>
+      </div>
       <mat-divider></mat-divider>
-      <div *ngFor="let item of menu">
+      <div *ngFor="let item of headerConfig.menu">
         <a *ngIf="!item.disabled" [routerLink]="item.link" class="hide-underline">
           <button mat-menu-item>
-            <mat-icon>{{ item.icon }}</mat-icon>
-            <span>{{ item.title }}</span>
+            <mat-icon class="md-primary-color">{{ item.icon }}</mat-icon>
+            <span class="md-primary-color">{{ item.title }}</span>
           </button>
         </a>
         <button *ngIf="item.disabled" mat-menu-item disabled>
@@ -26,10 +26,10 @@ import {HeaderMenu, User} from "./md.top-menu.model";
         </button>
       </div>
       <mat-divider></mat-divider>
-      <a [routerLink]="logoutUrl" class="hide-underline">
+      <a [routerLink]="headerConfig.logoutUrl" class="hide-underline">
         <button mat-menu-item>
-          <mat-icon>logout</mat-icon>
-          <span>Logout</span>
+          <mat-icon class="md-primary-color">logout</mat-icon>
+          <span class="md-primary-color">Logout</span>
         </button>
       </a>
     </mat-menu>
@@ -38,14 +38,8 @@ import {HeaderMenu, User} from "./md.top-menu.model";
 })
 export class MdTopMenuComponent {
   @Input()
-  icon = "account_circle";
-
-  @Input()
-  user?: User;
-
-  @Input()
-  menu?: HeaderMenu[];
-
-  @Input()
-  logoutUrl: string = "/logout";
+  headerConfig: HeaderConfig = {
+    icon: "account_circle",
+    logoutUrl: "/logout"
+  };
 }

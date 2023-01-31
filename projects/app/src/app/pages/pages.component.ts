@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {LinkSection} from "../../../../layout/src/lib/components";
+import {HeaderConfig, LinkSection} from "../../../../layout/src/lib/components";
 
 const NAV_MENU: LinkSection[] = [
   {
@@ -38,10 +38,24 @@ const NAV_MENU: LinkSection[] = [
   }
 ];
 
+const TOP_MENU: HeaderConfig = {
+  icon: "account_circle",
+  logoutUrl: "/logout",
+  user: {
+    email: "lfernando2091@gmail.com",
+    user_name: "LFernando"
+  },
+  menu: [
+    { title: 'Profile', icon: 'account_circle', link: '' },
+    { title: 'Setting', icon: 'settings', link: '', disabled: true },
+    { title: 'Switch Account', icon: 'sync_alt', link: '/p/switch-accounts' }
+  ]
+}
+
 @Component({
   selector: 'app-pages',
   template: `
-    <md-dashboard-layout [sections]="menu">
+    <md-dashboard-layout [sections]="menu" [headerConfig]="headerConfig">
       <md-one-column class="space">
         <h1>Home</h1>
         <router-outlet></router-outlet>
@@ -55,4 +69,5 @@ const NAV_MENU: LinkSection[] = [
 })
 export class PagesComponent {
   menu: LinkSection[] = NAV_MENU;
+  headerConfig = TOP_MENU;
 }

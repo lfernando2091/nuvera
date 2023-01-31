@@ -11,8 +11,8 @@ export interface HeaderMenu {
 }
 
 export interface HeaderConfig {
-  icon?: string;
+  icon: string;
   user?: User;
   menu?: HeaderMenu[];
-  logoutUrl?: string;
+  logoutUrl: string;
 }

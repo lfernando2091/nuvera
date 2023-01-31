@@ -16,7 +16,6 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {RouterModule} from "@angular/router";
 import {LayoutModule} from "@angular/cdk/layout";
-import {MatCardModule} from "@angular/material/card";
 import {MatDividerModule} from "@angular/material/divider";
 
 const COMPONENTS = [
@@ -39,7 +38,6 @@ const MATERIAL_UI = [
   MatButtonModule,
   MatIconModule,
   MatMenuModule,
-  MatCardModule,
   MatDividerModule
 ];
 
