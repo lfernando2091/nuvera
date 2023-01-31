@@ -14,10 +14,12 @@ export enum ScreenView {
   selector: 'md-dashboard-container',
   template: `
     <mat-drawer-container autosize>
-      <mat-drawer [mode]="drawerMode" [opened]="drawerOpened" [class.radius]="!drawerOpened">
-        <md-nav-link [sections]="sections"></md-nav-link>
-      </mat-drawer>
-      <md-rail-menu [class.open]="showRailMenu" [sections]="sections"></md-rail-menu>
+      <ng-template [ngIf]="navigation">
+        <mat-drawer [mode]="drawerMode" [opened]="drawerOpened" [class.radius]="!drawerOpened">
+          <md-nav-link [sections]="sections"></md-nav-link>
+        </mat-drawer>
+        <md-rail-menu [class.open]="showRailMenu" [sections]="sections"></md-rail-menu>
+      </ng-template>
       <div class="sidenav-content">
         <ng-content select="md-header"></ng-content>
         <ng-content select="md-body"></ng-content>
@@ -32,6 +34,9 @@ export class MdDashboardContainer {
 
   @Input()
   sections?: LinkSection[];
+
+  @Input()
+  navigation = true;
 
   drawerMode: MatDrawerMode = "over";
   drawerOpened = false;

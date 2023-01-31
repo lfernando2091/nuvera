@@ -5,9 +5,9 @@ import {HeaderConfig, LinkSection} from "../../components";
 @Component({
   selector: 'md-dashboard-layout',
   template: `
-    <md-dashboard-container [sections]="sections">
+    <md-dashboard-container [sections]="sections" [navigation]="navigation">
       <md-header role="heading" class="single-row">
-        <button *ngIf="allowOpenMenu" (click)="onOpenDrawer()" mat-icon-button aria-label="Open Menu">
+        <button *ngIf="allowOpenMenu && navigation" (click)="onOpenDrawer()" mat-icon-button aria-label="Open Menu">
           <mat-icon>menu</mat-icon>
         </button>
         <span>{{ title }}</span>
@@ -36,6 +36,9 @@ export class MdDashboardLayout {
 
   @Input()
   headerConfig?: HeaderConfig;
+
+  @Input()
+  navigation = true;
 
   @ViewChild(MdDashboardContainer)
   public dashboard: MdDashboardContainer | null = null;
