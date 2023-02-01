@@ -41,3 +41,9 @@
     margin-bottom: 5px;
   }
 }
+
+.ellipsis-txt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

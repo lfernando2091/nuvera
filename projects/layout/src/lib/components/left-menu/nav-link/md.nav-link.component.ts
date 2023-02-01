@@ -14,6 +14,18 @@ import {LinkSection} from "./md.nav-link.model";
     ])
   ],
   template: `
+    <md-account-info>
+      <img logoIcon src="https://angular-material.fusetheme.com/assets/images/logo/logo.svg"/>
+      <div titleName class="ellipsis-txt">Some Name Business</div>
+      <div roleName class="ellipsis-txt">Administrator</div>
+      <button accountMenu [matMenuTriggerFor]="menuAccounts" mat-icon-button aria-label="Accounts Menu">
+        <mat-icon>sync</mat-icon>
+      </button>
+      <mat-menu class="md-context-menu-content" #menuAccounts>
+        <h1>Account 1</h1>
+        <h1>Account 2</h1>
+      </mat-menu>
+    </md-account-info>
     <ng-template [ngIf]="sections">
       <ng-template ngFor let-section [ngForOf]="sections">
         <ng-template [ngIf]="!section.links">

@@ -14,12 +14,19 @@ export enum ScreenView {
   selector: 'md-dashboard-container',
   template: `
     <mat-drawer-container autosize>
-      <ng-template [ngIf]="navigation">
-        <mat-drawer [mode]="drawerMode" [opened]="drawerOpened" [class.radius]="!drawerOpened">
-          <md-nav-link [sections]="sections"></md-nav-link>
-        </mat-drawer>
-        <md-rail-menu [class.open]="showRailMenu" [sections]="sections"></md-rail-menu>
-      </ng-template>
+      <mat-drawer *ngIf="navigation" [mode]="drawerMode" [opened]="drawerOpened" [class.radius]="!drawerOpened">
+        <md-nav-link [sections]="sections"></md-nav-link>
+      </mat-drawer>
+      <md-rail-menu *ngIf="navigation" [class.open]="showRailMenu" [sections]="sections">
+        <md-toggle-button topButton>
+          <mat-icon first>sync_alt</mat-icon>
+          <mat-icon second>home</mat-icon>
+        </md-toggle-button>
+        <md-toggle-button bottomButton>
+          <mat-icon first>sync_alt</mat-icon>
+          <mat-icon second>home</mat-icon>
+        </md-toggle-button>
+      </md-rail-menu>
       <div class="sidenav-content">
         <ng-content select="md-header"></ng-content>
         <ng-content select="md-body"></ng-content>

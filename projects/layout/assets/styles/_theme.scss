@@ -7,6 +7,8 @@
 @use './components/md.link-button.component-theme' as link-button-theme;
 @use './components/md.rail-menu.component-theme' as rail-menu-theme;
 @use './components/md.context-menu.component-theme' as context-menu-theme;
+@use './components/md.toggle-button.component-theme' as toggle-button-theme;
+@use './components/md.account-info.component-theme' as account-info-theme;
 
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
@@ -18,6 +20,8 @@
     @include link-button-theme.color($theme);
     @include rail-menu-theme.color($theme);
     @include context-menu-theme.color($theme);
+    @include toggle-button-theme.color($theme);
+    @include account-info-theme.color($theme);
   }
 
   $typography-config: mat.get-typography-config($theme);
@@ -25,5 +29,6 @@
     @include header-theme.typography($theme);
     @include link-button-theme.typography($theme);
     @include context-menu-theme.typography($theme);
+    @include account-info-theme.typography($theme);
   }
 }

@@ -18,6 +18,7 @@ import { LinkSection } from "../nav-link/md.nav-link.model";
       </ng-template>
     </nav>
     <div class="bottom-btn">
+      <ng-content select="[bottomButton]"></ng-content>
     </div>
   `,
   styleUrls: ["./md.rail-menu.component.scss"]

@@ -1,0 +1,25 @@
+:host {
+  width: 48px;
+  height: 48px;
+  transition: background-color 300ms cubic-bezier(0.2, 0, 0, 1);
+  border-radius: 32px;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+}
+
+.md-toggle-button {
+  transition: transform 300ms cubic-bezier(0.2, 0, 0, 1);
+  & > .first, & > .second{
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -1px;
+    margin-left: -1px;
+  }
+  &.active {
+    transform: translateY(-48px);
+  }
+}
