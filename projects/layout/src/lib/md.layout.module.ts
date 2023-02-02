@@ -6,7 +6,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {CommonModule} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {
-  MdAccountInfoComponent,
+  MdAccountInfoComponent, MdAccountMenuComponent,
   MdBodyComponent,
   MdFooterComponent,
   MdHeaderComponent, MdLinkButtonComponent, MdNavLinkComponent,
@@ -33,7 +33,8 @@ const COMPONENTS = [
   MdSublinkComponent,
   MdRailMenuComponent,
   MdToggleButtonComponent,
-  MdAccountInfoComponent
+  MdAccountInfoComponent,
+  MdAccountMenuComponent
 ];
 
 const MATERIAL_UI = [

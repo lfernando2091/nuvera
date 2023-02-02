@@ -9,6 +9,7 @@
 @use './components/md.context-menu.component-theme' as context-menu-theme;
 @use './components/md.toggle-button.component-theme' as toggle-button-theme;
 @use './components/md.account-info.component-theme' as account-info-theme;
+@use './components/md.account-menu.component-theme' as account-menu-theme;
 
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
@@ -22,6 +23,7 @@
     @include context-menu-theme.color($theme);
     @include toggle-button-theme.color($theme);
     @include account-info-theme.color($theme);
+    @include account-menu-theme.color($theme);
   }
 
   $typography-config: mat.get-typography-config($theme);

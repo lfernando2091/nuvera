@@ -21,7 +21,7 @@
       }
     }
 
-    .collapse-item {
+    .collapse-item, .back-button, .md-button {
       &:hover, &.active{
         background-color: mat.get-color-from-palette($primary-palette, 200, 0.5);
       }

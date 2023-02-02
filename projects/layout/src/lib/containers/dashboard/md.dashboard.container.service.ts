@@ -5,9 +5,11 @@ import {ScreenView} from "./md.dashboard.container";
 export class MdDashboardContainerService {
   private readonly _screen$: EventEmitter<ScreenView>;
   private _screen: ScreenView;
+  private readonly _onChangeAccount$: EventEmitter<string>;
 
   constructor() {
     this._screen$ = new EventEmitter<ScreenView>();
+    this._onChangeAccount$ = new EventEmitter<string>();
     this._screen = ScreenView.Normal;
   }
 
@@ -22,5 +24,9 @@ export class MdDashboardContainerService {
 
   get eventScreen$(): EventEmitter<ScreenView> {
     return this._screen$;
+  }
+
+  get eventOnChangeAccount$(): EventEmitter<string> {
+    return this._onChangeAccount$;
   }
 }
