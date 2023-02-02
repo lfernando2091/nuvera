@@ -3,12 +3,7 @@ import {MatDrawer, MatDrawerMode} from "@angular/material/sidenav";
 import {LinkSection} from "../../components";
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {MdDashboardContainerService} from "./md.dashboard.container.service";
-
-export enum ScreenView {
-  Small,
-  Normal,
-  Big,
-}
+import {ScreenView} from "./md.dashboard.container.model";
 
 @Component({
   selector: 'md-dashboard-container',

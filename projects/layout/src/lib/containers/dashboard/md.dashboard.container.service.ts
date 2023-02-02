@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable} from "@angular/core";
-import {ScreenView} from "./md.dashboard.container";
+import {ScreenView} from "./md.dashboard.container.model";
 
 @Injectable()
 export class MdDashboardContainerService {
