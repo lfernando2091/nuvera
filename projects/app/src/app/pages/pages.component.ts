@@ -1,5 +1,7 @@
-import {Component} from "@angular/core";
-import {HeaderConfig, LinkSection} from "../../../../layout/src/lib/components";
+import {Component, OnInit} from "@angular/core";
+import {HeaderConfig} from "../../../../layout/src/lib/components";
+import {MdDashboardContainerService} from "../../../../layout/src/lib/services";
+import {LinkSection} from "../../../../layout/src/lib/models/left-menu/nav-link/md.nav-link.model";
 
 const NAV_MENU: LinkSection[] = [
   {
@@ -55,7 +57,7 @@ const TOP_MENU: HeaderConfig = {
 @Component({
   selector: 'app-pages',
   template: `
-    <md-dashboard-layout [sections]="menu" [headerConfig]="headerConfig">
+    <md-dashboard-layout [headerConfig]="headerConfig">
       <md-one-column class="space">
         <h1>Home</h1>
         <router-outlet></router-outlet>
@@ -67,7 +69,19 @@ const TOP_MENU: HeaderConfig = {
   `,
   styleUrls: ['./pages.component.scss']
 })
-export class PagesComponent {
+export class PagesComponent implements OnInit{
   menu: LinkSection[] = NAV_MENU;
   headerConfig = TOP_MENU;
+
+  constructor(
+    private dashboard: MdDashboardContainerService
+  ) {
+  }
+
+  ngOnInit() {
+    // this.dashboard.setNavigation(false);
+    setTimeout(() => {
+      this.dashboard.setSections$(this.menu);
+    }, 3000);
+  }
 }

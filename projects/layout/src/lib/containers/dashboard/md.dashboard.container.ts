@@ -1,81 +1,78 @@
-import {Component, Input, ViewChild} from "@angular/core";
-import {MatDrawer, MatDrawerMode} from "@angular/material/sidenav";
-import {LinkSection} from "../../components";
-import {BreakpointObserver} from "@angular/cdk/layout";
-import {MdDashboardContainerService} from "../../services";
+import {ChangeDetectionStrategy, Component, OnInit, ViewChild} from "@angular/core";
+import {MatDrawer} from "@angular/material/sidenav";
+import {MdDashboardBreakpointsService, MdDashboardContainerService} from "../../services";
 import {ScreenView} from "../../models";
 
 @Component({
   selector: 'md-dashboard-container',
   template: `
-    <mat-drawer-container autosize>
-      <mat-drawer *ngIf="navigation" [mode]="drawerMode" [opened]="drawerOpened" [class.radius]="!drawerOpened">
-        <md-nav-link [sections]="sections"></md-nav-link>
-      </mat-drawer>
-      <md-rail-menu *ngIf="navigation" [class.open]="showRailMenu" [sections]="sections">
-        <md-toggle-button topButton>
-          <mat-icon first>sync_alt</mat-icon>
-          <mat-icon second>home</mat-icon>
-        </md-toggle-button>
-        <md-toggle-button bottomButton>
-          <mat-icon first>sync_alt</mat-icon>
-          <mat-icon second>home</mat-icon>
-        </md-toggle-button>
-      </md-rail-menu>
-      <div class="sidenav-content">
-        <ng-content select="md-header"></ng-content>
-        <ng-content select="md-body"></ng-content>
-      </div>
-    </mat-drawer-container>
+    <ng-container *ngIf="
+    {
+        screen: screen$ | async,
+        sections: sections$ | async,
+        navigation: navigation$ | async
+    } as observables">
+      <mat-drawer-container autosize>
+        <mat-drawer
+          *ngIf="observables.navigation"
+          [mode]="observables.screen === screenTypes.Small || observables.screen === screenTypes.Normal ? 'over': 'side'"
+          [opened]="allowOpen(observables.screen)"
+          [class.radius]="observables.screen !== screenTypes.Big">
+          <md-nav-link
+            *ngIf="observables.sections; else loadingDrawer"
+            [sections]="observables.sections"></md-nav-link>
+          <ng-template #loadingDrawer>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </ng-template>
+        </mat-drawer>
+        <md-rail-menu *ngIf="observables.navigation && observables.sections"
+                      [class.open]="observables.screen === screenTypes.Normal" [sections]="observables.sections">
+          <md-toggle-button topButton>
+            <mat-icon first>sync_alt</mat-icon>
+            <mat-icon second>home</mat-icon>
+          </md-toggle-button>
+          <md-toggle-button bottomButton>
+            <mat-icon first>sync_alt</mat-icon>
+            <mat-icon second>home</mat-icon>
+          </md-toggle-button>
+        </md-rail-menu>
+        <div class="sidenav-content">
+          <ng-content select="md-header"></ng-content>
+          <ng-content select="md-body"></ng-content>
+        </div>
+      </mat-drawer-container>
+    </ng-container>
   `,
-  styleUrls: ["./md.dashboard.container.scss"]
+  styleUrls: ["./md.dashboard.container.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MdDashboardContainer {
+export class MdDashboardContainer implements OnInit{
   @ViewChild(MatDrawer)
-  public drawer: MatDrawer | null = null;
+  drawer: MatDrawer | null = null;
+  screenTypes = ScreenView;
 
-  @Input()
-  sections?: LinkSection[];
-
-  @Input()
-  navigation = true;
-
-  drawerMode: MatDrawerMode = "over";
-  drawerOpened = false;
-  showRailMenu = false;
-
-  smallWidth = '(max-width: 959.98px)';
-  normalWidth = '(min-width: 960px) and (max-width: 1534.98px)';
-  bigWidth = '(min-width: 1535px)';
+  sections$ = this.dashboardContainerService.getSections$();
+  screen$ = this.breakpoint.getScreen$();
+  navigation$ = this.dashboardContainerService.getNavigation$();
+  _allowOpen = false;
 
   constructor(
-    private breakpointObserver: BreakpointObserver,
-    private dashboardContainerService: MdDashboardContainerService
+    private dashboardContainerService: MdDashboardContainerService,
+    private breakpoint: MdDashboardBreakpointsService
   ) {
-    breakpointObserver.observe([
-      this.smallWidth,
-      this.normalWidth,
-      this.bigWidth
-    ])
-      .subscribe(result => {
-      if (result.matches) {
-        if (result.breakpoints[this.smallWidth]
-          || result.breakpoints[this.normalWidth]) {
-          this.drawerOpened = false;
-          this.drawerMode = "over";
-        }
+  }
 
-        if (result.breakpoints[this.smallWidth]) {
-          this.dashboardContainerService.screen$ = ScreenView.Small;
-        } else if (result.breakpoints[this.normalWidth]) {
-          this.dashboardContainerService.screen$ = ScreenView.Normal;
-        } else if (result.breakpoints[this.bigWidth]) {
-          this.dashboardContainerService.screen$ = ScreenView.Big;
-          this.drawerMode = "side";
-          this.drawerOpened = true;
-        }
-        this.showRailMenu = this.dashboardContainerService.screen === ScreenView.Normal;
-      }
+  allowOpen(screen: ScreenView) {
+    if (screen === ScreenView.Big) {
+      this._allowOpen = true;
+      return true;
+    }
+    return this._allowOpen;
+  }
+
+  ngOnInit() {
+    this.dashboardContainerService.drawer$.subscribe(() => {
+      this._allowOpen = !this._allowOpen;
     });
   }
 }

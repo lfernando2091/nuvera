@@ -1,32 +1,42 @@
 import {EventEmitter, Injectable} from "@angular/core";
-import {ScreenView} from "../../models";
+import {LinkSection} from "../../models";
+import {BehaviorSubject, filter, Observable} from "rxjs";
 
 @Injectable()
 export class MdDashboardContainerService {
-  private readonly _screen$: EventEmitter<ScreenView>;
-  private _screen: ScreenView;
   private readonly _onChangeAccount$: EventEmitter<string>;
+  private _drawer$ = new EventEmitter<void>();
+  private _sections$ = new BehaviorSubject<LinkSection[]>([]);
+  private _navigation$ = new BehaviorSubject<boolean>(true);
 
   constructor() {
-    this._screen$ = new EventEmitter<ScreenView>();
     this._onChangeAccount$ = new EventEmitter<string>();
-    this._screen = ScreenView.Normal;
-  }
-
-  get screen(): ScreenView {
-    return this._screen;
-  }
-
-  set screen$(screen: ScreenView){
-    this._screen = screen;
-    this._screen$.emit(screen);
-  }
-
-  get eventScreen$(): EventEmitter<ScreenView> {
-    return this._screen$;
   }
 
   get eventOnChangeAccount$(): EventEmitter<string> {
     return this._onChangeAccount$;
+  }
+
+  get drawer$() {
+    return this._drawer$;
+  }
+
+  setSections$(values: LinkSection[]) {
+    this._sections$.next(values);
+  }
+
+  getSections$(): Observable<LinkSection[]> {
+    return this._sections$.pipe(
+      filter(() => this._navigation$.getValue()),
+      filter(values => values.length > 0)
+    );
+  }
+
+  setNavigation$(value: boolean) {
+    this._navigation$.next(value);
+  }
+
+  getNavigation$() {
+    return this._navigation$.asObservable();
   }
 }

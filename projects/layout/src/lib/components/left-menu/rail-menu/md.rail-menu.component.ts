@@ -1,5 +1,5 @@
-import {Component, Input} from "@angular/core";
-import { LinkSection } from "../nav-link/md.nav-link.model";
+import {ChangeDetectionStrategy, Component, Input} from "@angular/core";
+import { LinkSection } from "../../../models";
 
 @Component({
   selector: 'md-rail-menu',
@@ -21,7 +21,8 @@ import { LinkSection } from "../nav-link/md.nav-link.model";
       <ng-content select="[bottomButton]"></ng-content>
     </div>
   `,
-  styleUrls: ["./md.rail-menu.component.scss"]
+  styleUrls: ["./md.rail-menu.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MdRailMenuComponent {
   @Input()

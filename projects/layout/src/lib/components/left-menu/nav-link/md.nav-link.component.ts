@@ -1,8 +1,8 @@
-import {Component, Input} from "@angular/core";
+import {ChangeDetectionStrategy, Component, Input} from "@angular/core";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import {LinkSection} from "./md.nav-link.model";
 import {Account} from "../account-menu/md.account-menu.model";
 import { MdDashboardContainerService } from "../../../services";
+import {LinkSection} from "../../../models";
 
 @Component({
   selector: 'md-nav-link',
@@ -74,7 +74,8 @@ import { MdDashboardContainerService } from "../../../services";
       </md-account-menu>
     </ng-template>
   `,
-  styleUrls: ["./md.nav-link.component.scss"]
+  styleUrls: ["./md.nav-link.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MdNavLinkComponent {
   @Input()
