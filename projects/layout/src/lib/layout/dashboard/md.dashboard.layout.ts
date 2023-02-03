@@ -1,6 +1,8 @@
 import {Component, Input, ViewChild} from "@angular/core";
-import {MdDashboardContainer, MdDashboardContainerService, ScreenView} from "../../containers";
+import {MdDashboardContainer} from "../../containers";
 import {HeaderConfig, LinkSection} from "../../components";
+import {MdDashboardContainerService} from "../../services";
+import {ScreenView} from "../../models";
 
 @Component({
   selector: 'md-dashboard-layout',

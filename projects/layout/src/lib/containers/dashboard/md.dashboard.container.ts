@@ -2,8 +2,8 @@ import {Component, Input, ViewChild} from "@angular/core";
 import {MatDrawer, MatDrawerMode} from "@angular/material/sidenav";
 import {LinkSection} from "../../components";
 import {BreakpointObserver} from "@angular/cdk/layout";
-import {MdDashboardContainerService} from "./md.dashboard.container.service";
-import {ScreenView} from "./md.dashboard.container.model";
+import {MdDashboardContainerService} from "../../services";
+import {ScreenView} from "../../models";
 
 @Component({
   selector: 'md-dashboard-container',

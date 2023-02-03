@@ -2,7 +2,7 @@ import {Component, Input} from "@angular/core";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {LinkSection} from "./md.nav-link.model";
 import {Account} from "../account-menu/md.account-menu.model";
-import {MdDashboardContainerService} from "../../../containers/dashboard/md.dashboard.container.service";
+import { MdDashboardContainerService } from "../../../services";
 
 @Component({
   selector: 'md-nav-link',
