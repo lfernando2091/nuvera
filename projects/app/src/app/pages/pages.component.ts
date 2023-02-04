@@ -82,6 +82,7 @@ export class PagesComponent implements OnInit{
     // this.dashboard.setNavigation(false);
     setTimeout(() => {
       this.dashboard.setSections$(this.menu);
+      this.dashboard.setAccounts$({ list: [], selected: "" });
     }, 3000);
   }
 }

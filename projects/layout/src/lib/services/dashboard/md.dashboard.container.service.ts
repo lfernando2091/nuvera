@@ -1,11 +1,12 @@
 import {EventEmitter, Injectable} from "@angular/core";
-import {LinkSection} from "../../models";
+import {AccountsList, LinkSection} from "../../models";
 import {BehaviorSubject, filter, Observable} from "rxjs";
 
 @Injectable()
 export class MdDashboardContainerService {
   private readonly _onChangeAccount$: EventEmitter<string>;
   private _sections$ = new BehaviorSubject<LinkSection[]>([]);
+  private _accounts$ = new BehaviorSubject<AccountsList | null>(null);
   private _navigation$ = new BehaviorSubject<boolean>(true);
 
   constructor() {
@@ -24,6 +25,16 @@ export class MdDashboardContainerService {
     return this._sections$.pipe(
       filter(() => this._navigation$.getValue()),
       filter(values => values.length > 0)
+    );
+  }
+
+  setAccounts$(values: AccountsList) {
+    this._accounts$.next(values);
+  }
+
+  getAccounts$() {
+    return this._accounts$.pipe(
+      filter(values => !!values)
     );
   }
 
