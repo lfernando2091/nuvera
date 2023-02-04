@@ -10,14 +10,16 @@ import {ScreenView} from "../../models";
     {
         screen: screen$ | async,
         sections: sections$ | async,
-        navigation: navigation$ | async
+        navigation: navigation$ | async,
+        drawer: drawer$ | async
     } as observables">
       <mat-drawer-container autosize>
         <mat-drawer
           *ngIf="observables.navigation"
           [mode]="observables.screen === screenTypes.Small || observables.screen === screenTypes.Normal ? 'over': 'side'"
-          [opened]="allowOpen(observables.screen)"
-          [class.radius]="observables.screen !== screenTypes.Big">
+          [opened]="observables.drawer"
+          [class.radius]="observables.screen !== screenTypes.Big"
+          (closed)="closedDrawer()">
           <md-nav-link
             *ngIf="observables.sections; else loadingDrawer"
             [sections]="observables.sections"></md-nav-link>
@@ -47,14 +49,12 @@ import {ScreenView} from "../../models";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MdDashboardContainer implements OnInit{
-  @ViewChild(MatDrawer)
-  drawer: MatDrawer | null = null;
   screenTypes = ScreenView;
 
   sections$ = this.dashboardContainerService.getSections$();
   screen$ = this.breakpoint.getScreen$();
   navigation$ = this.dashboardContainerService.getNavigation$();
-  _allowOpen = false;
+  drawer$ = this.breakpoint.getDrawer$();
 
   constructor(
     private dashboardContainerService: MdDashboardContainerService,
@@ -62,17 +62,10 @@ export class MdDashboardContainer implements OnInit{
   ) {
   }
 
-  allowOpen(screen: ScreenView) {
-    if (screen === ScreenView.Big) {
-      this._allowOpen = true;
-      return true;
-    }
-    return this._allowOpen;
+  closedDrawer() {
+    this.breakpoint.setDrawer(false);
   }
 
   ngOnInit() {
-    this.dashboardContainerService.drawer$.subscribe(() => {
-      this._allowOpen = !this._allowOpen;
-    });
   }
 }

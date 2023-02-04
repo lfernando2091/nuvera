@@ -57,11 +57,6 @@ export class MdDashboardLayout {
   }
 
   async onOpenDrawer() {
-    this.dashboardContainerService.drawer$.emit();
-    // if(this.dashboard) {
-    //   if(this.dashboard.drawer) {
-    //    await this.dashboard.drawer.open();
-    //   }
-    // }
+    this.breakpoint.setDrawerToggle();
   }
 }

@@ -6,6 +6,8 @@ import {ScreenView} from "../../models";
 @Injectable()
 export class MdDashboardBreakpointsService {
   private _screen$ = new BehaviorSubject<ScreenView>(ScreenView.Normal);
+  private _drawer$ = new BehaviorSubject<boolean>(false);
+
   private smallWidth = '(max-width: 959.98px)';
   private normalWidth = '(min-width: 960px) and (max-width: 1534.98px)';
   private bigWidth = '(min-width: 1535px)';
@@ -27,8 +29,21 @@ export class MdDashboardBreakpointsService {
               res.breakpoints[this.bigWidth] ?
                 ScreenView.Big: ScreenView.Normal
         );
+        this.setDrawer(res.breakpoints[this.bigWidth]);
       }
     });
+  }
+
+  getDrawer$() {
+    return this._drawer$.asObservable();
+  }
+
+  setDrawer(value: boolean) {
+    this._drawer$.next(value);
+  }
+
+  setDrawerToggle() {
+    this._drawer$.next(!this._drawer$.getValue());
   }
 
   getScreen$() {

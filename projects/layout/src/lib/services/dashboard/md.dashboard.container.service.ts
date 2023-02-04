@@ -5,7 +5,6 @@ import {BehaviorSubject, filter, Observable} from "rxjs";
 @Injectable()
 export class MdDashboardContainerService {
   private readonly _onChangeAccount$: EventEmitter<string>;
-  private _drawer$ = new EventEmitter<void>();
   private _sections$ = new BehaviorSubject<LinkSection[]>([]);
   private _navigation$ = new BehaviorSubject<boolean>(true);
 
@@ -15,10 +14,6 @@ export class MdDashboardContainerService {
 
   get eventOnChangeAccount$(): EventEmitter<string> {
     return this._onChangeAccount$;
-  }
-
-  get drawer$() {
-    return this._drawer$;
   }
 
   setSections$(values: LinkSection[]) {
