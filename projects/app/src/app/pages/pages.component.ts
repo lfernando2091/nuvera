@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {HeaderConfig} from "../../../../layout/src/lib/components";
 import {MdDashboardContainerService} from "../../../../layout/src/lib/services";
-import {LinkSection} from "../../../../layout/src/lib/models/left-menu/nav-link/md.nav-link.model";
+import {Account, LinkSection} from "../../../../layout/src/lib/models";
 
 const NAV_MENU: LinkSection[] = [
   {
@@ -40,6 +40,14 @@ const NAV_MENU: LinkSection[] = [
   }
 ];
 
+const ACCOUNTS: Account[] = [
+  { id: "0", name: "Account 1" },
+  { id: "1", name: "Account 2" },
+  { id: "2", name: "Account 3" },
+  { id: "3", name: "Account 4" },
+  { id: "4", name: "Account 5" }
+];
+
 const TOP_MENU: HeaderConfig = {
   icon: "account_circle",
   logoutUrl: "/logout",
@@ -57,9 +65,10 @@ const TOP_MENU: HeaderConfig = {
 @Component({
   selector: 'app-pages',
   template: `
-    <md-dashboard-layout [headerConfig]="headerConfig">
+    <md-dashboard-layout>
       <md-one-column class="space">
         <h1>Home</h1>
+        <button (click)="cancelNav()">Cancel Navigation</button>
         <router-outlet></router-outlet>
       </md-one-column>
       <div footer>
@@ -78,11 +87,21 @@ export class PagesComponent implements OnInit{
   ) {
   }
 
+  cancelNav() {
+    this.dashboard.setNavigation$(false);
+  }
+
   ngOnInit() {
-    // this.dashboard.setNavigation(false);
     setTimeout(() => {
       this.dashboard.setSections$(this.menu);
-      this.dashboard.setAccounts$({ list: [], selected: "" });
+      this.dashboard.setAccount$(ACCOUNTS[2]);
+      this.dashboard.setAccounts$(ACCOUNTS);
+      if (TOP_MENU.menu) {
+        this.dashboard.setHeaderMenu$(TOP_MENU.menu);
+      }
+      if (TOP_MENU.user) {
+        this.dashboard.setUser$(TOP_MENU.user);
+      }
     }, 3000);
   }
 }

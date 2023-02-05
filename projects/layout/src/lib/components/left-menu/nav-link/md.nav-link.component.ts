@@ -1,8 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input} from "@angular/core";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import {Account} from "../../../models";
 import { MdDashboardContainerService } from "../../../services";
-import {LinkSection} from "../../../models";
+import {Account, LinkSection} from "../../../models";
 
 @Component({
   selector: 'md-nav-link',
@@ -59,18 +58,23 @@ import {LinkSection} from "../../../models";
       </ng-template>
     </ng-template>
     <ng-template [ngIf]="showAccounts">
-      <md-account-menu *ngIf="accounts$ | async as accounts; else loading" (onClose)="onClose()">
-        <div menuContent class="sub-menu-list">
-          <div [@inItem]="'in'" class="md-button" *ngFor="let account of accounts.list" (click)="onSelectAccount(account.id)" [class.active]="account.id === accounts.selected">
-            <md-link-button disabled>
-              <div label>{{ account.name }}</div>
-            </md-link-button>
+      <ng-container *ngIf="{
+        accounts: accounts$ | async,
+        account: account$ | async
+      } as observables">
+        <md-account-menu *ngIf="observables.accounts; else loading" (onClose)="onClose()">
+          <div menuContent class="sub-menu-list">
+            <div [@inItem]="'in'" class="md-button" *ngFor="let acc of observables.accounts" (click)="onSelectAccount(acc)" [class.active]="observables.account && acc.id === observables.account.id">
+              <md-link-button disabled>
+                <div label>{{ acc.name }}</div>
+              </md-link-button>
+            </div>
           </div>
-        </div>
-      </md-account-menu>
-      <ng-template #loading>
-        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-      </ng-template>
+        </md-account-menu>
+        <ng-template #loading>
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </ng-template>
+      </ng-container>
     </ng-template>
   `,
   styleUrls: ["./md.nav-link.component.scss"],
@@ -82,13 +86,7 @@ export class MdNavLinkComponent {
 
   showAccounts = false;
   accounts$ = this.dashboard.getAccounts$();
-  // accounts: Account[] = [
-  //   { id: "0", name: "Account 1" },
-  //   { id: "1", name: "Account 2" },
-  //   { id: "2", name: "Account 3" },
-  //   { id: "3", name: "Account 4" }
-  // ];
-  // activeAccount = "2";
+  account$ = this.dashboard.getAccount$();
 
   constructor(
     private dashboard: MdDashboardContainerService
@@ -99,10 +97,8 @@ export class MdNavLinkComponent {
     this.showAccounts = !this.showAccounts;
   }
 
-  onSelectAccount(id: string) {
-    // if (this.activeAccount !== id) {
-    //   this.dashboard.eventOnChangeAccount$.emit(id);
-    // }
+  onSelectAccount(value: Account) {
+    this.dashboard.setAccount$(value);
   }
 
   onClose() {

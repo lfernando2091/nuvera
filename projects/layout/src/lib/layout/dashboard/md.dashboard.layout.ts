@@ -19,10 +19,7 @@ import {ScreenView} from "../../models";
           </button>
           <span>{{ title }}</span>
           <span class="toolbar-spacer"></span>
-          <md-top-menu
-            *ngIf="headerConfig"
-            [headerConfig]="headerConfig"
-          ></md-top-menu>
+          <md-top-menu></md-top-menu>
         </md-header>
         <md-body>
           <ng-content></ng-content>
@@ -39,13 +36,6 @@ import {ScreenView} from "../../models";
 export class MdDashboardLayout {
   @Input()
   title = "App Title";
-
-  @Input()
-  headerConfig?: HeaderConfig;
-
-  // @ViewChild(MdDashboardContainer)
-  // public dashboard: MdDashboardContainer | null = null;
-
   navigation$ = this.dashboardContainerService.getNavigation$();
   screen$ = this.breakpoint.getScreen$();
   screenTypes = ScreenView;

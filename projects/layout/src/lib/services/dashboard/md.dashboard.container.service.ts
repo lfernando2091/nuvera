@@ -1,20 +1,18 @@
-import {EventEmitter, Injectable} from "@angular/core";
-import {AccountsList, LinkSection} from "../../models";
+import {Injectable} from "@angular/core";
+import {Account, LinkSection} from "../../models";
 import {BehaviorSubject, filter, Observable} from "rxjs";
+import {HeaderMenu, User} from "../../components";
 
 @Injectable()
 export class MdDashboardContainerService {
-  private readonly _onChangeAccount$: EventEmitter<string>;
   private _sections$ = new BehaviorSubject<LinkSection[]>([]);
-  private _accounts$ = new BehaviorSubject<AccountsList | null>(null);
+  private _accounts$ = new BehaviorSubject<Account[] | null>(null);
+  private _account$ = new BehaviorSubject<Account | null>(null);
   private _navigation$ = new BehaviorSubject<boolean>(true);
+  private _headerMenu$ = new BehaviorSubject<HeaderMenu[] | null>(null);
+  private _user$ = new BehaviorSubject<User | null>(null);
 
   constructor() {
-    this._onChangeAccount$ = new EventEmitter<string>();
-  }
-
-  get eventOnChangeAccount$(): EventEmitter<string> {
-    return this._onChangeAccount$;
   }
 
   setSections$(values: LinkSection[]) {
@@ -28,12 +26,27 @@ export class MdDashboardContainerService {
     );
   }
 
-  setAccounts$(values: AccountsList) {
+  setAccounts$(values: Account[]) {
     this._accounts$.next(values);
   }
 
   getAccounts$() {
     return this._accounts$.pipe(
+      filter(values => !!values)
+    );
+  }
+
+  setAccount$(value: Account) {
+    const selected = this._account$.getValue();
+    if (selected && selected !== value) {
+      this._account$.next(value);
+    } else {
+      this._account$.next(value);
+    }
+  }
+
+  getAccount$() {
+    return this._account$.pipe(
       filter(values => !!values)
     );
   }
@@ -44,5 +57,25 @@ export class MdDashboardContainerService {
 
   getNavigation$() {
     return this._navigation$.asObservable();
+  }
+
+  setHeaderMenu$(values: HeaderMenu[]) {
+    this._headerMenu$.next(values);
+  }
+
+  getHeaderMenu$() {
+    return this._headerMenu$.pipe(
+      filter(values => !!values)
+    );
+  }
+
+  setUser$(user: User) {
+    this._user$.next(user);
+  }
+
+  getUser$() {
+    return this._user$.pipe(
+      filter(values => !!values)
+    );
   }
 }
