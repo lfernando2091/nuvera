@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {ChangeDetectionStrategy, Component} from "@angular/core";
 
 @Component({
   selector: 'md-account-info',
@@ -20,7 +20,8 @@ import {Component} from "@angular/core";
       </div>
     </div>
   `,
-  styleUrls: ["./md.account-info.component.scss"]
+  styleUrls: ["./md.account-info.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MdAccountInfoComponent {
 }

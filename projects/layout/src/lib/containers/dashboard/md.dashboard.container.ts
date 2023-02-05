@@ -1,5 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit, ViewChild} from "@angular/core";
-import {MatDrawer} from "@angular/material/sidenav";
+import {ChangeDetectionStrategy, Component, OnInit} from "@angular/core";
 import {MdDashboardBreakpointsService, MdDashboardContainerService} from "../../services";
 import {ScreenView} from "../../models";
 

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from "@angular/core";
+import {ChangeDetectionStrategy, Component, EventEmitter, Output} from "@angular/core";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
@@ -21,7 +21,8 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
     </div>
     <ng-content select="[menuContent]"></ng-content>
   `,
-  styleUrls: ["./md.account-menu.component.scss"]
+  styleUrls: ["./md.account-menu.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MdAccountMenuComponent {
   @Output()

@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {ChangeDetectionStrategy, Component} from "@angular/core";
 
 @Component({
   selector: 'md-body',
@@ -10,7 +10,8 @@ import {Component} from "@angular/core";
       <ng-content select="md-footer"></ng-content>
     </div>
   `,
-  styleUrls: ["./md.body.component.scss"]
+  styleUrls: ["./md.body.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MdBodyComponent {
 }

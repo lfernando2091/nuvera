@@ -15,25 +15,33 @@ import {Account, LinkSection} from "../../../models";
     ])
   ],
   template: `
-    <md-account-info>
-      <img logoIcon src="https://angular-material.fusetheme.com/assets/images/logo/logo.svg" alt="logo-icon"/>
-      <div titleName class="ellipsis-txt">Some Name Business</div>
-      <div roleName class="ellipsis-txt">Administrator</div>
-      <button accountMenu mat-icon-button aria-label="Accounts Menu" (click)="toggleAccounts()">
-        <mat-icon>sync</mat-icon>
-      </button>
-    </md-account-info>
-    <ng-template [ngIf]="sections && !showAccounts">
+    <ng-container *ngIf="{
+        account: account$ | async,
+        accounts: accounts$ | async
+      } as observables">
+      <md-account-info *ngIf="observables.account">
+        <img logoIcon [src]="observables.account.business.logo" alt="logo-icon"/>
+        <div titleName class="ellipsis-txt">{{ observables.account.business.name }}</div>
+        <div roleName class="ellipsis-txt">{{ observables.account.role }}</div>
+        <button accountMenu
+        *ngIf="observables.accounts && observables.accounts.length > 1"
+                mat-icon-button aria-label="Accounts Menu"
+                (click)="toggleAccounts()">
+          <mat-icon>sync</mat-icon>
+        </button>
+      </md-account-info>
+    </ng-container>
+    <ng-container *ngIf="sections && !showAccounts">
       <ng-template ngFor let-section [ngForOf]="sections">
-        <ng-template [ngIf]="!section.links">
+        <ng-container *ngIf="!section.links">
           <a [@inItem]="'in'" class="item" [routerLink]="section.link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <md-link-button disabled routerLinkActive="active">
               <mat-icon preIcon>{{ section.icon }}</mat-icon>
               <div label>{{ section.label }}</div>
             </md-link-button>
           </a>
-        </ng-template>
-        <ng-template [ngIf]="section.links">
+        </ng-container>
+        <ng-container *ngIf="section.links">
           <div [@inItem]="'in'" class="section-name">{{ section.label.toUpperCase() }}</div>
           <a [@inItem]="'in'" class="item" [routerLink]="section.link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <md-link-button disabled routerLinkActive="active">
@@ -42,31 +50,31 @@ import {Account, LinkSection} from "../../../models";
             </md-link-button>
           </a>
           <ng-template ngFor let-sectLinks [ngForOf]="section.links">
-            <ng-template [ngIf]="!sectLinks.subLinks">
+            <ng-container *ngIf="!sectLinks.subLinks">
               <a [@inItem]="'in'" class="item" [routerLink]="sectLinks.link" routerLinkActive="active">
                 <md-link-button disabled routerLinkActive="active">
                   <mat-icon preIcon>{{ sectLinks.icon }}</mat-icon>
                   <div label>{{ sectLinks.label }}</div>
                 </md-link-button>
               </a>
-            </ng-template>
-            <ng-template [ngIf]="sectLinks.subLinks">
+            </ng-container>
+            <ng-container *ngIf="sectLinks.subLinks">
               <md-sublink [link]="sectLinks"></md-sublink>
-            </ng-template>
+            </ng-container>
           </ng-template>
-        </ng-template>
+        </ng-container>
       </ng-template>
-    </ng-template>
-    <ng-template [ngIf]="showAccounts">
+    </ng-container>
+    <ng-container *ngIf="showAccounts">
       <ng-container *ngIf="{
         accounts: accounts$ | async,
         account: account$ | async
       } as observables">
         <md-account-menu *ngIf="observables.accounts; else loading" (onClose)="onClose()">
           <div menuContent class="sub-menu-list">
-            <div [@inItem]="'in'" class="md-button" *ngFor="let acc of observables.accounts" (click)="onSelectAccount(acc)" [class.active]="observables.account && acc.id === observables.account.id">
+            <div [@inItem]="'in'" class="md-button" *ngFor="let acc of observables.accounts" (click)="onSelectAccount(acc)" [class.active]="observables.account && acc.business.id === observables.account.business.id">
               <md-link-button disabled>
-                <div label>{{ acc.name }}</div>
+                <div label>{{ acc.business.name }}</div>
               </md-link-button>
             </div>
           </div>
@@ -75,7 +83,7 @@ import {Account, LinkSection} from "../../../models";
           <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         </ng-template>
       </ng-container>
-    </ng-template>
+    </ng-container>
   `,
   styleUrls: ["./md.nav-link.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush

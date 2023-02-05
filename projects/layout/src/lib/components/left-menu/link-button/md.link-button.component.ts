@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {ChangeDetectionStrategy, Component} from "@angular/core";
 
 @Component({
   selector: 'md-link-button',
@@ -10,7 +10,8 @@ import {Component} from "@angular/core";
       <span class="post-icon"><ng-content select="[postIcon]"></ng-content></span>
     </button>
   `,
-  styleUrls: ["./md.link-button.component.scss"]
+  styleUrls: ["./md.link-button.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MdLinkButtonComponent {
 

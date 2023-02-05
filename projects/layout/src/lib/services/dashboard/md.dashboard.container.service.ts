@@ -11,6 +11,7 @@ export class MdDashboardContainerService {
   private _navigation$ = new BehaviorSubject<boolean>(true);
   private _headerMenu$ = new BehaviorSubject<HeaderMenu[] | null>(null);
   private _user$ = new BehaviorSubject<User | null>(null);
+  private _loading$ = new BehaviorSubject<boolean>(true);
 
   constructor() {
   }
@@ -38,7 +39,7 @@ export class MdDashboardContainerService {
 
   setAccount$(value: Account) {
     const selected = this._account$.getValue();
-    if (selected && selected !== value) {
+    if (selected && selected.business.id !== value.business.id) {
       this._account$.next(value);
     } else {
       this._account$.next(value);
@@ -77,5 +78,13 @@ export class MdDashboardContainerService {
     return this._user$.pipe(
       filter(values => !!values)
     );
+  }
+
+  setLoading$(value: boolean) {
+    this._loading$.next(value);
+  }
+
+  getLoading$() {
+    return this._loading$.asObservable();
   }
 }

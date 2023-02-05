@@ -9,8 +9,10 @@ import {ScreenView} from "../../models";
   template: `
     <ng-container *ngIf="{
         screen: screen$ | async,
-        navigation: navigation$ | async
+        navigation: navigation$ | async,
+        loading: loading$ | async
     } as observables">
+      <mat-progress-bar *ngIf="observables.loading" mode="indeterminate"></mat-progress-bar>
       <md-dashboard-container>
         <md-header role="heading" class="single-row">
           <button *ngIf="observables.screen !== screenTypes.Big && observables.navigation"
@@ -37,6 +39,7 @@ export class MdDashboardLayout {
   @Input()
   title = "App Title";
   navigation$ = this.dashboardContainerService.getNavigation$();
+  loading$ = this.dashboardContainerService.getLoading$();
   screen$ = this.breakpoint.getScreen$();
   screenTypes = ScreenView;
 

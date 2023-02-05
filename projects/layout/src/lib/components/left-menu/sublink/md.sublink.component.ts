@@ -1,8 +1,8 @@
-import {AfterViewInit, Component, Input} from "@angular/core";
+import {AfterViewInit, ChangeDetectionStrategy, Component, Input} from "@angular/core";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs";
-import {Links} from "../../../models/left-menu/nav-link/md.nav-link.model";
+import {Links} from "../../../models";
 
 @Component({
   selector: 'md-sublink',
@@ -51,7 +51,8 @@ import {Links} from "../../../models/left-menu/nav-link/md.nav-link.model";
       </div>
     </ng-template>
   `,
-  styleUrls: ["./md.sublink.component.scss"]
+  styleUrls: ["./md.sublink.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MdSublinkComponent implements AfterViewInit{
 
