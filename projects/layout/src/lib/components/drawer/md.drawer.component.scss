@@ -1,0 +1,40 @@
+:host {
+  --md-drawer-width: 430px;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+
+  border-right-width: 0;
+  border-radius: 16px 0 0 16px;
+  height: unset;
+  transition-property: transform;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  background: beige;
+  border-left: 1px solid beige;
+  box-shadow: none;
+  width: var(--md-drawer-width);
+
+  border-color: rgba(0, 0, 0, 0.12);
+  flex-direction: column;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  border-right-style: solid;
+  overflow: hidden;
+
+  &.dismissible {
+    right: 0;
+    left: initial;
+    display: none;
+    position: absolute;
+  }
+
+  &.open {
+    display: flex;
+  }
+
+  &.open + section.md-drawer-container {
+    margin-left: 0;
+    margin-right: var(--md-drawer-width);
+  }
+}

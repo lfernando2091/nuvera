@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {HeaderConfig} from "../../../../layout/src/lib/components";
 import {MdDashboardContainerService} from "../../../../layout/src/lib/services";
 import {Account, LinkSection, Role} from "../../../../layout/src/lib/models";
+import {MdDrawerService} from "../../../../layout/src/lib/services/dashboard/md.drawer.service";
 
 const NAV_MENU: LinkSection[] = [
   {
@@ -71,6 +72,7 @@ const TOP_MENU: HeaderConfig = {
       <md-one-column class="space">
         <h1>Home</h1>
         <button (click)="cancelNav()">Cancel Navigation</button>
+        <button (click)="openDrawer()">Open Drawer</button>
         <router-outlet></router-outlet>
       </md-one-column>
       <div footer>
@@ -85,12 +87,17 @@ export class PagesComponent implements OnInit{
   headerConfig = TOP_MENU;
 
   constructor(
-    private dashboard: MdDashboardContainerService
+    private dashboard: MdDashboardContainerService,
+    private mdDrawer: MdDrawerService
   ) {
   }
 
   cancelNav() {
     this.dashboard.setNavigation$(false);
+  }
+
+  openDrawer() {
+    this.mdDrawer.toggle();
   }
 
   ngOnInit() {

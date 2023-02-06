@@ -3,7 +3,7 @@ import {MdDashboardContainer} from "../../containers";
 import {MdDashboardLayout} from "../../layout";
 import {
   MdAccountInfoComponent, MdAccountMenuComponent,
-  MdBodyComponent,
+  MdBodyComponent, MdDrawerComponent,
   MdFooterComponent,
   MdHeaderComponent, MdLinkButtonComponent, MdNavLinkComponent,
   MdOneColumnComponent, MdRailMenuComponent, MdSublinkComponent, MdToggleButtonComponent,
@@ -33,7 +33,8 @@ const COMPONENTS = [
   MdRailMenuComponent,
   MdToggleButtonComponent,
   MdAccountInfoComponent,
-  MdAccountMenuComponent
+  MdAccountMenuComponent,
+  MdDrawerComponent
 ];
 
 const MATERIAL_UI = [

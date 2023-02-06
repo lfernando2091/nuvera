@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from "@angular/core";
 import {MdDashboardBreakpointsService, MdDashboardContainerService} from "../../services";
 import {ScreenView} from "../../models";
+import {MdDrawerService} from "../../services/dashboard/md.drawer.service";
 
 @Component({
   selector: 'md-dashboard-container',
@@ -10,7 +11,8 @@ import {ScreenView} from "../../models";
         screen: screen$ | async,
         sections: sections$ | async,
         navigation: navigation$ | async,
-        drawer: drawer$ | async
+        drawer: drawer$ | async,
+        openDrawer: openDrawer$ | async
     } as observables">
       <mat-drawer-container autosize>
         <mat-drawer
@@ -37,10 +39,21 @@ import {ScreenView} from "../../models";
             <mat-icon second>home</mat-icon>
           </md-toggle-button>
         </md-rail-menu>
-        <div class="sidenav-content">
+        <main class="md-body-view">
           <ng-content select="md-header"></ng-content>
-          <ng-content select="md-body"></ng-content>
-        </div>
+          <div class="sidenav-content">
+            <ng-content select="md-body"></ng-content>
+          </div>
+<!--          <mat-drawer-container autosize>-->
+<!--            <mat-drawer position="end" mode="side" [opened]="observables.openDrawer">-->
+<!--              <h1>Content 1234567890</h1>-->
+<!--            </mat-drawer>-->
+<!--          </mat-drawer-container>-->
+        </main>
+        <md-drawer
+          class="dismissible"
+        [class.open]="observables.openDrawer">
+        </md-drawer>
       </mat-drawer-container>
     </ng-container>
   `,
@@ -54,10 +67,12 @@ export class MdDashboardContainer implements OnInit{
   screen$ = this.breakpoint.getScreen$();
   navigation$ = this.dashboardContainerService.getNavigation$();
   drawer$ = this.breakpoint.getDrawer$();
+  openDrawer$ = this.mdDrawer.getOpen$();
 
   constructor(
     private dashboardContainerService: MdDashboardContainerService,
-    private breakpoint: MdDashboardBreakpointsService
+    private breakpoint: MdDashboardBreakpointsService,
+    private mdDrawer: MdDrawerService
   ) {
   }
 

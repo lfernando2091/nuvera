@@ -1,7 +1,11 @@
 mat-drawer-container {
   display: inherit;
 
-  md-rail-menu.open + div.sidenav-content{
+  //md-rail-menu.open + div.sidenav-content{
+  //  margin-left: 88px;;
+  //}
+
+  md-rail-menu.open + main.md-body-view {
     margin-left: 88px;;
   }
 }
