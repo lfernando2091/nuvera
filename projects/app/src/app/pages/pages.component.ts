@@ -3,6 +3,7 @@ import {HeaderConfig} from "../../../../layout/src/lib/components";
 import {MdDashboardContainerService} from "../../../../layout/src/lib/services";
 import {Account, LinkSection, Role} from "../../../../layout/src/lib/models";
 import {MdDrawerService} from "../../../../layout/src/lib/services/dashboard/md.drawer.service";
+import {PanelRightComponent} from "./panel-right/panel-right.component";
 
 const NAV_MENU: LinkSection[] = [
   {
@@ -97,7 +98,7 @@ export class PagesComponent implements OnInit{
   }
 
   openDrawer() {
-    this.mdDrawer.toggle();
+    this.mdDrawer.open(PanelRightComponent);
   }
 
   ngOnInit() {

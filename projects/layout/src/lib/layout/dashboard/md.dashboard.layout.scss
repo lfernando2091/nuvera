@@ -1,3 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-progress-bar {
+  top: 0;
+  z-index: 3;
+  position: sticky;
+}
+
 .toolbar-spacer {
   flex: 1 1 auto;
 }

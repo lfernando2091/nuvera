@@ -12,7 +12,7 @@ import {ScreenView} from "../../models";
         navigation: navigation$ | async,
         loading: loading$ | async
     } as observables">
-      <mat-progress-bar *ngIf="observables.loading" mode="indeterminate"></mat-progress-bar>
+      <mat-progress-bar *ngIf="observables.loading" color="accent" mode="indeterminate"></mat-progress-bar>
       <md-dashboard-container>
         <md-header role="heading" class="single-row">
           <button *ngIf="observables.screen !== screenTypes.Big && observables.navigation"

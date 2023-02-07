@@ -4,9 +4,11 @@ import {Home1Component} from "./home-1/home-1.component";
 import {PagesRoutingModule} from "./pages-routing.module";
 import {PagesComponent} from "./pages.component";
 import {MdDashboardLayoutModule} from "../../../../layout/src/lib/modules";
+import {PanelRightComponent} from "./panel-right/panel-right.component";
 
 const COMPONENTS = [
   PagesComponent,
+  PanelRightComponent,
   Home1Component,
   Home2Component
 ];

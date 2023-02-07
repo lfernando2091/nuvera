@@ -18,6 +18,10 @@ import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {LayoutModule} from "@angular/cdk/layout";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {PortalModule} from "@angular/cdk/portal";
+import {MdDrawerService} from "../../services";
+import {MdDrawerControllerService} from "../../services/dashboard/md.drawer-controller.service";
+import {Unsubscribe} from "../../utils";
 
 const COMPONENTS = [
   MdDashboardContainer,
@@ -54,10 +58,16 @@ const MATERIAL_UI = [
     CommonModule,
     RouterModule,
     LayoutModule,
+    PortalModule,
     ...MATERIAL_UI
   ],
   exports: [
     ...COMPONENTS
+  ],
+  providers: [
+    MdDrawerService,
+    MdDrawerControllerService,
+    Unsubscribe
   ]
 })
 export class MdDashboardLayoutModule {

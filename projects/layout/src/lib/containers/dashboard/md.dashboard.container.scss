@@ -1,13 +1,15 @@
-mat-drawer-container {
-  display: inherit;
+:host {
+  flex: auto;
+}
 
-  //md-rail-menu.open + div.sidenav-content{
-  //  margin-left: 88px;;
-  //}
-
+mat-sidenav-content {
   md-rail-menu.open + main.md-body-view {
     margin-left: 88px;;
   }
+}
+
+.mat-drawer-container, .mat-drawer-content{
+  overflow: unset;
 }
 
 .sidenav-content {
@@ -17,8 +19,29 @@ mat-drawer-container {
   min-width: 300px;
 }
 
-.mat-drawer {
+.mat-drawer.main-nav {
+  left: 0;
+  right: initial;
+  position: fixed;
+
   &.radius {
     border-radius: 0 16px 16px 0;
   }
+}
+
+.mat-drawer.mat-drawer-end {
+  position: fixed;
+
+  &.radius {
+    border-radius: 16px 0 0 16px;
+  }
+}
+
+.side-nav-title{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+
+  padding: 10px 30px 20px 10px;
 }

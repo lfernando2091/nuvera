@@ -9,6 +9,10 @@
     background-color: mat.get-color-from-palette($primary-palette, 50);
   }
 
+  * {
+    box-sizing: border-box;
+  }
+
   .sidenav-content {
     background-color: mat.get-color-from-palette($primary-palette, 50);
     color: mat.get-color-from-palette($primary-palette, 500);
