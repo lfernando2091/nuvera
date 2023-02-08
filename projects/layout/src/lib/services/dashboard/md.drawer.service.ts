@@ -20,28 +20,31 @@ export class MdDrawerService {
   open<Component, Data = any, Result = any>(
     component: ComponentType<Component>,
     config?: MdDrawerConfig<Data>,
-  ): MdDrawerRefService<Component, Result>;
+  ): MdDrawerRefService<Result>;
 
   open<Component, Data = any, Result = any>(
     template: TemplateRef<Component>,
     config?: MdDrawerConfig<Data>,
-  ): MdDrawerRefService<Component, Result>;
+  ): MdDrawerRefService<Result>;
 
   open<Component, Data = any, Result = any>(
     dom: ElementRef<HTMLElement>,
     config?: MdDrawerConfig<Data>,
-  ): MdDrawerRefService<Component, Result>;
+  ): MdDrawerRefService<Result>;
 
   open<Component, Data = any, Result = any>(
     componentOrTemplateRef: ComponentType<Component> | TemplateRef<Component> | ElementRef<HTMLElement>,
     config?: MdDrawerConfig<Data>,
-  ): MdDrawerRefService<Component, Result> {
-    const ref = new MdDrawerRefService<Component, Result>();
+  ): MdDrawerRefService<Result> {
+    const ref = new MdDrawerRefService<Result>(
+      this.controller
+    );
     const injector = Injector.create({
       providers: [
         { provide: MD_DRAWER_DATA, useValue: config ? config.data:  {  }},
         { provide: MdDrawerRefService, useValue: ref}
       ]});
+    this.controller.clear();
     if (componentOrTemplateRef instanceof TemplateRef) {
       this.controller.attachTemplatePortal(
         new TemplatePortal(componentOrTemplateRef, null!)
@@ -64,5 +67,6 @@ export class MdDrawerService {
 
   close() {
     this._open$.next(false);
+    this.controller.clearAndNotify();
   }
 }

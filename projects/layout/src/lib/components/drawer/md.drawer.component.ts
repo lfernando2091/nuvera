@@ -1,7 +1,7 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
-  Component, ComponentRef, EmbeddedViewRef, OnInit, ViewChild, ViewContainerRef,
+  Component, ComponentRef, EmbeddedViewRef, OnDestroy, OnInit, ViewChild, ViewContainerRef,
   ViewEncapsulation
 } from "@angular/core";
 import {BasePortalOutlet, CdkPortalOutlet, ComponentPortal, DomPortal, TemplatePortal} from "@angular/cdk/portal";
@@ -18,7 +18,7 @@ import {Unsubscribe} from "../../utils";
   changeDetection: ChangeDetectionStrategy.Default,
   encapsulation: ViewEncapsulation.None
 })
-export class MdDrawerComponent extends BasePortalOutlet implements AfterViewInit, OnInit{
+export class MdDrawerComponent extends BasePortalOutlet implements AfterViewInit, OnInit, OnDestroy{
   @ViewChild(CdkPortalOutlet, {static: true}) public _portalOutlet?: CdkPortalOutlet;
 
   constructor(
@@ -31,6 +31,9 @@ export class MdDrawerComponent extends BasePortalOutlet implements AfterViewInit
   ngOnInit(): void {
   }
 
+  _contentAttached() {
+
+  }
 
   ngAfterViewInit() {
     this.controller.render$()
@@ -42,6 +45,17 @@ export class MdDrawerComponent extends BasePortalOutlet implements AfterViewInit
           this.controller.setInstance(this.attachTemplatePortal(res));
         }
       });
+    this.controller.detach$()
+      .pipe(this.unsubscribe.takeUntilDestroy)
+      .subscribe(() => {
+        if (this._portalOutlet && this._portalOutlet.hasAttached()) {
+          this._portalOutlet.detach();
+        }
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.controller.clear();
   }
 
   attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T> {
@@ -49,7 +63,7 @@ export class MdDrawerComponent extends BasePortalOutlet implements AfterViewInit
       if (this._portalOutlet.hasAttached()) {
         throwDialogContentAlreadyAttachedError();
       }
-      // this._contentAttached();
+      this._contentAttached();
       return this._portalOutlet.attachComponentPortal(portal);
     }
     throw new Error("_portalOutlet not initialized.");
@@ -60,7 +74,7 @@ export class MdDrawerComponent extends BasePortalOutlet implements AfterViewInit
       if (this._portalOutlet.hasAttached()) {
         throwDialogContentAlreadyAttachedError();
       }
-      // this._contentAttached();
+      this._contentAttached();
       return this._portalOutlet.attachTemplatePortal(portal);
     }
     throw new Error("_portalOutlet not initialized.");
@@ -71,7 +85,7 @@ export class MdDrawerComponent extends BasePortalOutlet implements AfterViewInit
       if (this._portalOutlet.hasAttached()) {
         throwDialogContentAlreadyAttachedError();
       }
-      // this._contentAttached();
+      this._contentAttached();
       return this._portalOutlet.attachDomPortal(portal);
     }
     throw new Error("_portalOutlet not initialized.");

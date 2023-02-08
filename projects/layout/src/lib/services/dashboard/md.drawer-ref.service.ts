@@ -1,11 +1,17 @@
-import {BasePortalOutlet} from "@angular/cdk/portal";
+import {MdDrawerControllerService} from "./md.drawer-controller.service";
+import {Observable} from "rxjs";
 
-export class MdDrawerRefService<Component = any, Result = any, C extends BasePortalOutlet = BasePortalOutlet>{
+export class MdDrawerRefService<Result = any>{
   constructor(
+    private controller: MdDrawerControllerService
   ) {
   }
 
-  close(result: Result) {
+  close(result?: Result) {
+    this.controller.clearAndNotify(result);
+  }
 
+  afterClose(): Observable<Result | undefined> {
+    return this.controller.result$();
   }
 }
