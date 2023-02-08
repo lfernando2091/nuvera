@@ -22,6 +22,7 @@ import {MD_DRAWER_DATA, MdDrawerRefService} from "../../../../../layout/src/lib/
     <h1>Panel 1</h1>
     <h1>Panel 1</h1>
     <h1>Panel 1</h1>
+    <button (click)="onExit()">Exit now</button>
   `,
   styleUrls: ['./panel-right.component.scss']
 })
@@ -32,5 +33,9 @@ export class PanelRightComponent {
     @Inject(MD_DRAWER_DATA) data: any
   ) {
     console.log(data);
+  }
+
+  onExit() {
+    this.ref.close({ hola: "mundo" });
   }
 }

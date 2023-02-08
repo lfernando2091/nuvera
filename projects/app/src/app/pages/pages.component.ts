@@ -98,7 +98,11 @@ export class PagesComponent implements OnInit{
   }
 
   openDrawer() {
-    this.mdDrawer.open(PanelRightComponent);
+    this.mdDrawer
+      .open(PanelRightComponent, { title: "My Awesome title here", data: { name: "luis" } })
+      .afterClose().subscribe((res) => {
+        console.log(res);
+    });
   }
 
   ngOnInit() {
