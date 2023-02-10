@@ -2,7 +2,11 @@
   "name": "@nuvera/layout",
   "version": "0.0.0",
   "description": "This is a Material UI 15 Portal",
-  "keywords": ["md", "mui", "material"],
+  "keywords": [
+    "md",
+    "mui",
+    "material"
+  ],
   "author": {
     "name": "Fernando Mendez",
     "email": "lfernando2091@gmail.com",
@@ -16,9 +20,9 @@
     "node": ">=16.0.0"
   },
   "peerDependencies": {
+    "@angular/cdk": "^15.1.2",
     "@angular/common": "^15.1.0",
     "@angular/core": "^15.1.0",
-    "@angular/cdk": "^15.1.2",
     "@angular/material": "^15.1.2"
   },
   "dependencies": {
