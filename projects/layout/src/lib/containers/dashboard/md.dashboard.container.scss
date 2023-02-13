@@ -2,14 +2,16 @@
   flex: auto;
 }
 
-mat-sidenav-content {
+mat-sidenav-content, .mat-drawer-content {
   md-rail-menu.open + main.md-body-view {
     margin-left: 88px;;
   }
 }
 
 .mat-drawer-container, .mat-drawer-content{
-  overflow: unset;
+  overflow: initial;
+  position: initial;
+  display: initial;
 }
 
 .sidenav-content {
