@@ -11,6 +11,8 @@ export class MdDashboardBreakpointsService {
   private smallWidth = '(max-width: 959.98px)';
   private normalWidth = '(min-width: 960px) and (max-width: 1534.98px)';
   private bigWidth = '(min-width: 1535px)';
+  // private normalWidth = '(min-width: 960px) and (max-width: 1279.98px)';
+  // private bigWidth = '(min-width: 1280px)';
 
   constructor(
     private breakpointObserver: BreakpointObserver

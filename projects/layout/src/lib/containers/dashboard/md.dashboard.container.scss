@@ -1,17 +1,45 @@
 :host {
   flex: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 mat-sidenav-content, .mat-drawer-content {
-  md-rail-menu.open + main.md-body-view {
+  md-rail-menu.open + main.md-scroll-content {
     margin-left: 88px;;
+  }
+
+  .md-body-view {
+    overflow-y: auto;
+    height: 100vh;
   }
 }
 
-.mat-drawer-container, .mat-drawer-content{
+.md-scroll-content {
+  position: relative;
+  flex: 1 1 0;
+}
+
+.main-section {
+  display: flex;
+  height: 100%;
+}
+
+.mat-drawer-container {
   overflow: initial;
   position: initial;
+  z-index: initial;
+  display: flex;
+}
+
+.mat-drawer-content {
+  width: 100%;
+  position: initial;
+  z-index: initial;
   display: initial;
+  height: initial;
+  overflow: initial;
 }
 
 .sidenav-content {
@@ -22,9 +50,10 @@ mat-sidenav-content, .mat-drawer-content {
 }
 
 .mat-drawer.main-nav {
-  left: 0;
-  right: initial;
-  position: fixed;
+  top: initial;
+  bottom: initial;
+  position: absolute;
+  height: 100%;
 
   &.radius {
     border-radius: 0 16px 16px 0;
@@ -32,7 +61,7 @@ mat-sidenav-content, .mat-drawer-content {
 }
 
 .mat-drawer.mat-drawer-end {
-  position: fixed;
+  position: absolute;
 
   &.radius {
     border-radius: 16px 0 0 16px;

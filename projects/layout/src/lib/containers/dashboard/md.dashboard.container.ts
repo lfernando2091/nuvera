@@ -32,37 +32,42 @@ import {MdDrawerControllerService} from "../../services/dashboard/md.drawer-cont
         </mat-drawer>
 
         <mat-drawer-content>
-          <md-rail-menu *ngIf="observables.navigation && observables.sections"
-                        [class.open]="observables.screen === screenTypes.Normal" [sections]="observables.sections">
-            <md-toggle-button topButton>
-              <mat-icon first>sync_alt</mat-icon>
-              <mat-icon second>home</mat-icon>
-            </md-toggle-button>
-            <md-toggle-button bottomButton>
-              <mat-icon first>sync_alt</mat-icon>
-              <mat-icon second>home</mat-icon>
-            </md-toggle-button>
-          </md-rail-menu>
-          <main class="md-body-view">
-            <ng-content select="md-header"></ng-content>
-            <div class="sidenav-content">
-              <ng-content select="md-body"></ng-content>
-            </div>
-          </main>
+          <section class="main-section">
+            <md-rail-menu *ngIf="observables.navigation && observables.sections"
+                          [class.open]="observables.screen === screenTypes.Normal" [sections]="observables.sections">
+              <md-toggle-button topButton>
+                <mat-icon first>sync_alt</mat-icon>
+                <mat-icon second>home</mat-icon>
+              </md-toggle-button>
+              <md-toggle-button bottomButton>
+                <mat-icon first>sync_alt</mat-icon>
+                <mat-icon second>home</mat-icon>
+              </md-toggle-button>
+            </md-rail-menu>
 
-          <mat-drawer [opened]="observables.openDrawer"
-                      [mode]="observables.screen !== screenTypes.Small ? 'side': 'over'"
-                      (closed)="closedRightDrawer()"
-                      [class.radius]="observables.screen !== screenTypes.Big"
-                      position="end">
-            <div *ngIf="observables.titleDrawer" class="side-nav-title">
-              <button mat-icon-button aria-label="Close Menu" (click)="closedRightDrawer()">
-                <mat-icon>close</mat-icon>
-              </button>
-              <h3>{{ observables.titleDrawer }}</h3>
-            </div>
-            <md-drawer></md-drawer>
-          </mat-drawer>
+            <main class="md-scroll-content">
+              <div class="md-body-view">
+                <ng-content select="md-header"></ng-content>
+                <div class="sidenav-content">
+                  <ng-content select="md-body"></ng-content>
+                </div>
+              </div>
+            </main>
+            <mat-drawer [opened]="observables.openDrawer"
+                        [mode]="observables.screen !== screenTypes.Small ? 'side': 'over'"
+                        (closed)="closedRightDrawer()"
+                        [class.radius]="observables.screen === screenTypes.Small"
+                        position="end">
+              <div *ngIf="observables.titleDrawer" class="side-nav-title">
+                <button mat-icon-button aria-label="Close Menu" (click)="closedRightDrawer()">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <h3>{{ observables.titleDrawer }}</h3>
+              </div>
+              <md-drawer></md-drawer>
+            </mat-drawer>
+
+          </section>
         </mat-drawer-content>
       </mat-drawer-container>
     </ng-container>
