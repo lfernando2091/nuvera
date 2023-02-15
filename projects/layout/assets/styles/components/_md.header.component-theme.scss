@@ -6,8 +6,9 @@
   $primary-palette: map.get($color-config, 'primary');
 
   md-header {
-    background-color: mat.get-color-from-palette($primary-palette);
-    color: mat.get-color-from-palette($primary-palette, 'darker-contrast');
+    backdrop-filter: blur(6px);
+    background-color: mat.get-color-from-palette($primary-palette, 50, 0.9);
+    color: mat.get-color-from-palette($primary-palette, 800);
   }
 }
 

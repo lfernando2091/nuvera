@@ -16,7 +16,7 @@ import {Unsubscribe} from "../../utils";
   `,
   styleUrls: ["./md.drawer.component.scss"],
   changeDetection: ChangeDetectionStrategy.Default,
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
 export class MdDrawerComponent extends BasePortalOutlet implements AfterViewInit, OnInit, OnDestroy{
   @ViewChild(CdkPortalOutlet, {static: true}) public _portalOutlet?: CdkPortalOutlet;

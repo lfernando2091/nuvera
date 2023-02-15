@@ -6,7 +6,6 @@
   $primary-palette: map.get($color-config, 'primary');
 
   md-footer footer {
-    background-color: mat.get-color-from-palette($primary-palette, 100);
-    color: mat.get-color-from-palette($primary-palette, 'darker-contrast');
+    color: mat.get-color-from-palette($primary-palette, 800);
   }
 }
