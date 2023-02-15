@@ -9,20 +9,21 @@ const routes: Routes = [{
   component: PagesComponent,
   children: [
     {
-      path: 'home-1',
+      path: '',
       component: Home1Component,
     },
     {
-      path: 'ma/home-2',
+      path: 'analytics',
       component: Home2Component,
     },
     {
-      path: 'ma/home-3',
+      path: 'finance',
       component: Home2Component,
     },
     {
       path: 'ma',
-      component: Home2Component,
+      loadChildren: () => import('./submenus/submenu.module')
+        .then(m => m.SubmenuModule),
     },
   ]
 }];

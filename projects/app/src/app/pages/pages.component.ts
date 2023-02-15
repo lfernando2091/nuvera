@@ -2,34 +2,34 @@ import {Component, OnInit} from "@angular/core";
 import {HeaderConfig} from "../../../../layout/src/lib/components";
 import {MdDashboardContainerService} from "../../../../layout/src/lib/services";
 import {Account, LinkSection, Role} from "../../../../layout/src/lib/models";
-import {MdDrawerService} from "../../../../layout/src/lib/services/dashboard/md.drawer.service";
+import {MdDrawerService} from "../../../../layout/src/lib/services";
 import {PanelRightComponent} from "./panel-right/panel-right.component";
 
 const NAV_MENU: LinkSection[] = [
   {
-    label: "Home", icon: "home", link: "/home"
+    label: "Home", icon: "home", link: "/d"
   },
   {
-    label: "Analytics", icon: "bar_chart", link: "/p/analytics"
+    label: "Analytics", icon: "bar_chart", link: "/d/analytics"
   },
   {
-    label: "Finance", icon: "paid", link: "/p/finance"
+    label: "Finance", icon: "paid", link: "/d/finance"
   },
   {
-    label: "Management", icon: "add_circle", link: "/p/ma", links: [
+    label: "Management", icon: "add_circle", link: "/d/ma", links: [
       {
         label: "Business", icon: "storefront", subLinks: [
-          { label: 'List', link: '/p/ma/home-2' },
-          { label: 'Create', link: '/p/ma/home-2' },
-          { label: 'Details', link: '/p/ma/business/d' },
-          { label: 'Edit', link: '/p/ma/business/e' },
+          { label: 'List', link: '/d/ma/business' },
+          { label: 'Create', link: '/d/ma/home-2' },
+          { label: 'Details', link: '/d/ma/business/d' },
+          { label: 'Edit', link: '/d/ma/business/e' },
         ]
       },
       {
         label: "Partners", icon: "handshake", link: "", subLinks: [
-          { label: 'List', link: '/p/ma/home-3' },
-          { label: 'Details', link: '/p/ma/partners/d' },
-          { label: 'Edit', link: '/p/ma/partners/e' },
+          { label: 'List', link: '/d/ma/home-3' },
+          { label: 'Details', link: '/d/ma/partners/d' },
+          { label: 'Edit', link: '/d/ma/partners/e' },
         ]
       },
       {
@@ -71,9 +71,9 @@ const TOP_MENU: HeaderConfig = {
   template: `
     <md-dashboard-layout>
       <md-one-column class="space">
-        <h1>Home</h1>
-        <button (click)="cancelNav()">Cancel Navigation</button>
-        <button (click)="openDrawer()">Open Drawer</button>
+<!--        <h1>Home</h1>-->
+<!--        <button (click)="cancelNav()">Cancel Navigation</button>-->
+<!--        <button (click)="openDrawer()">Open Drawer</button>-->
         <router-outlet></router-outlet>
       </md-one-column>
       <div footer>

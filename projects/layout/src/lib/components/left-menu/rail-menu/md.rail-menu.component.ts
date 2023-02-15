@@ -11,6 +11,7 @@ import { LinkSection } from "../../../models";
       <ng-template [ngIf]="sections">
         <a *ngFor="let sect of sections" class="link-item"
            routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: !sect.links }"
            [routerLink]="sect.link">
           <mat-icon class="nav-icon-link">{{ sect.icon }}</mat-icon>
           <div class="nav-icon-label">{{ sect.label }}</div>
