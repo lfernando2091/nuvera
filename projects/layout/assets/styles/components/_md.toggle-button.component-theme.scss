@@ -6,7 +6,7 @@
   $primary-palette: map.get($color-config, 'primary');
 
   md-toggle-button {
-    border: 1px solid mat.get-color-from-palette($primary-palette, 100);
+    border: 1px solid mat.get-color-from-palette($primary-palette, 900);
 
     &:active, &:hover, &:focus {
       background-color: mat.get-color-from-palette($primary-palette, 200, 0.5);
@@ -14,7 +14,7 @@
 
     & .md-toggle-button {
       & > .first, & > .second{
-        color: mat.get-color-from-palette($primary-palette, 700);
+        color: mat.get-color-from-palette($primary-palette, 900);
       }
     }
   }

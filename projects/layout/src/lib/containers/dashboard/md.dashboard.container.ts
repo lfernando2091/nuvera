@@ -35,7 +35,7 @@ import {MdDrawerControllerService} from "../../services/dashboard/md.drawer-cont
           <section class="main-section">
             <md-rail-menu *ngIf="observables.navigation && observables.sections"
                           [class.open]="observables.screen === screenTypes.Normal" [sections]="observables.sections">
-              <md-toggle-button topButton>
+            <!--<md-toggle-button topButton>
                 <mat-icon first>sync_alt</mat-icon>
                 <mat-icon second>home</mat-icon>
               </md-toggle-button>
@@ -43,6 +43,11 @@ import {MdDrawerControllerService} from "../../services/dashboard/md.drawer-cont
                 <mat-icon first>sync_alt</mat-icon>
                 <mat-icon second>home</mat-icon>
               </md-toggle-button>
+            -->
+              <button *ngIf="observables.navigation"
+                      (click)="onOpenDrawer()" mat-icon-button aria-label="Open Menu" topButton>
+                <mat-icon>menu</mat-icon>
+              </button>
             </md-rail-menu>
 
             <main class="md-scroll-content">
@@ -99,6 +104,10 @@ export class MdDashboardContainer implements OnInit{
 
   closedRightDrawer() {
     this.mdDrawer.close();
+  }
+
+  onOpenDrawer() {
+    this.breakpoint.setDrawerToggle();
   }
 
   ngOnInit() {

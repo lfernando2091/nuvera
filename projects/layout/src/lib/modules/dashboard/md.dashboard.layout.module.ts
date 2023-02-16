@@ -6,7 +6,7 @@ import {
   MdBodyComponent, MdDrawerComponent,
   MdFooterComponent,
   MdHeaderComponent, MdLinkButtonComponent, MdNavLinkComponent,
-  MdOneColumnComponent, MdRailMenuComponent, MdSublinkComponent, MdToggleButtonComponent,
+  MdOneColumnComponent, MdRailMenuComponent, MdSublinkComponent, MdToggleButtonComponent, MdTopMenuBottomSheet,
   MdTopMenuComponent
 } from "../../components";
 import {MatSidenavModule} from "@angular/material/sidenav";
@@ -22,6 +22,8 @@ import {PortalModule} from "@angular/cdk/portal";
 import {MdDrawerService} from "../../services";
 import {MdDrawerControllerService} from "../../services/dashboard/md.drawer-controller.service";
 import {Unsubscribe} from "../../utils";
+import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
+import {MatListModule} from "@angular/material/list";
 
 const COMPONENTS = [
   MdDashboardContainer,
@@ -31,6 +33,7 @@ const COMPONENTS = [
   MdFooterComponent,
   MdOneColumnComponent,
   MdTopMenuComponent,
+  MdTopMenuBottomSheet,
   MdNavLinkComponent,
   MdLinkButtonComponent,
   MdSublinkComponent,
@@ -47,7 +50,9 @@ const MATERIAL_UI = [
   MatIconModule,
   MatMenuModule,
   MatDividerModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatBottomSheetModule,
+  MatListModule
 ];
 
 @NgModule({

@@ -70,6 +70,10 @@ export class MdDashboardContainerService {
     );
   }
 
+  getHeaderMenuData() {
+    return this._headerMenu$.getValue();
+  }
+
   setUser$(user: User) {
     this._user$.next(user);
   }
@@ -78,6 +82,10 @@ export class MdDashboardContainerService {
     return this._user$.pipe(
       filter(values => !!values)
     );
+  }
+
+  getUserData() {
+    return this._user$.getValue();
   }
 
   setLoading$(value: boolean) {

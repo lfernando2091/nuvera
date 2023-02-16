@@ -11,10 +11,10 @@
 
     & .links {
       & .link-item {
-        color: mat.get-color-from-palette($primary-palette, 600);
+        color: mat.get-color-from-palette($primary-palette, 800);
 
         &.active {
-          color:  mat.get-color-from-palette($primary-palette, 700);
+          color:  mat.get-color-from-palette($primary-palette, 900);
           > .nav-icon-link {
             background-color: mat.get-color-from-palette($accent-palette, 100);
           }

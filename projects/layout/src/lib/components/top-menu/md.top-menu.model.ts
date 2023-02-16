@@ -16,3 +16,13 @@ export interface HeaderConfig {
   menu?: HeaderMenu[];
   logoutUrl: string;
 }
+
+export interface HeaderSmConfig {
+  logoutUrl: string;
+  user: User | null;
+  menu: HeaderMenu[] | null;
+}
+
+export interface BottomSheetResponse {
+
+}

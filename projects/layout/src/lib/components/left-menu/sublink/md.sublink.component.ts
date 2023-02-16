@@ -1,7 +1,7 @@
 import {AfterViewInit, ChangeDetectionStrategy, Component, Input} from "@angular/core";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {NavigationEnd, Router} from "@angular/router";
-import {filter} from "rxjs";
+import {BehaviorSubject, filter} from "rxjs";
 import {Links} from "../../../models";
 
 @Component({
@@ -31,39 +31,40 @@ import {Links} from "../../../models";
     ])
   ],
   template: `
-    <ng-template [ngIf]="link">
-      <div [@inItem]="'in'" (click)="onToggleSubMenu()" class="collapse-item" [class.active]="hasActiveUrl">
-        <md-link-button disabled routerLinkActive="active">
-          <mat-icon preIcon>{{ link.icon }}</mat-icon>
-          <div label>{{ link.label }}</div>
-          <mat-icon postIcon>{{ rightIcon }}</mat-icon>
-        </md-link-button>
-      </div>
-      <div class="item-container" [@openClose]="collapse ? 'closed' : 'open'">
-        <div class="item-container">
-          <a [@inItem]="'in'" *ngFor="let sublink of link.subLinks" class="item"
-             [routerLink]="sublink.link" routerLinkActive="active">
-            <md-link-button disabled routerLinkActive="active">
-              <div label>{{ sublink.label }}</div>
-            </md-link-button>
-          </a>
+    <ng-container *ngIf="{
+        hasActiveUrl: hasActiveUrl$ | async,
+        collapse: collapse$ | async
+    } as vm">
+      <ng-container *ngIf="link">
+        <div [@inItem]="'in'" (click)="onToggleSubMenu()" class="collapse-item" [class.active]="vm.hasActiveUrl">
+          <md-link-button disabled routerLinkActive="active">
+            <mat-icon preIcon>{{ link.icon }}</mat-icon>
+            <div label>{{ link.label }}</div>
+            <mat-icon postIcon>{{ vm.collapse ? 'expand_more' : 'expand_less' }}</mat-icon>
+          </md-link-button>
         </div>
-      </div>
-    </ng-template>
+        <div class="item-container" [@openClose]="vm.collapse ? 'closed' : 'open'">
+          <div class="item-container">
+            <a [@inItem]="'in'" *ngFor="let sublink of link.subLinks" class="item"
+               [routerLink]="sublink.link" routerLinkActive="active">
+              <md-link-button disabled routerLinkActive="active">
+                <div label>{{ sublink.label }}</div>
+              </md-link-button>
+            </a>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
   `,
   styleUrls: ["./md.sublink.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MdSublinkComponent implements AfterViewInit{
-
   @Input()
   link?: Links;
 
-  hasActiveUrl = false;
-
-  collapse = true;
-
-  rightIcon = 'expand_more';
+  hasActiveUrl$ = new BehaviorSubject<boolean>(false);
+  collapse$ = new BehaviorSubject<boolean>(true);
 
   constructor(
     private router: Router
@@ -77,8 +78,9 @@ export class MdSublinkComponent implements AfterViewInit{
 
   checkActive(autoClose = false) {
     if (this.link && this.link.subLinks) {
-      this.hasActiveUrl = this.link.subLinks.some((e) => this.hasActive(e.link));
-      if (this.hasActiveUrl) {
+      const hasOne = this.link.subLinks.some((e) => this.hasActive(e.link));
+      this.hasActiveUrl$.next(hasOne);
+      if (hasOne) {
         this.openContent();
       } else if (autoClose) {
         this.closeContent();
@@ -86,39 +88,32 @@ export class MdSublinkComponent implements AfterViewInit{
     }
   }
 
-  hasActive(url?: string) {
-    if (url) {
-      return this.router.isActive(url,
-        {
-          paths: 'subset',
-          queryParams: 'subset',
-          fragment: 'ignored',
-          matrixParams: 'ignored'
-        });
-    }
-    return false;
+  hasActive(url: string) {
+    return this.router.isActive(url,
+      {
+        paths: 'subset',
+        queryParams: 'subset',
+        fragment: 'ignored',
+        matrixParams: 'ignored'
+      });
   }
 
   onToggleSubMenu() {
-    this.toggleContent(!this.collapse);
+    this.collapse$.next(!this.collapse$.getValue());
   }
 
   closeContent() {
-    this.toggleContent(true);
+    this.collapse$.next(true);
   }
 
   openContent() {
-    this.toggleContent(false);
-  }
-
-  toggleContent(collapse: boolean) {
-    this.collapse = collapse;
-    this.rightIcon = collapse ? 'expand_more': 'expand_less';
+    this.collapse$.next(false);
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.checkActive(true);
-    }, 100);
+    this.checkActive(true);
+    // setTimeout(() => {
+    //
+    // }, 100);
   }
 }

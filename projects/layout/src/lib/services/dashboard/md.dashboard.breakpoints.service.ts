@@ -51,4 +51,8 @@ export class MdDashboardBreakpointsService {
   getScreen$() {
     return this._screen$.asObservable();
   }
+
+  getScreenData() {
+    return this._screen$.getValue();
+  }
 }

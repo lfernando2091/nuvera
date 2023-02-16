@@ -15,13 +15,13 @@ import {ScreenView} from "../../models";
       <mat-progress-bar *ngIf="observables.loading" color="accent" mode="indeterminate"></mat-progress-bar>
       <md-dashboard-container>
         <md-header role="heading" class="single-row">
-          <button *ngIf="observables.screen !== screenTypes.Big && observables.navigation"
+          <button *ngIf="observables.screen === screenTypes.Small && observables.navigation"
                   (click)="onOpenDrawer()" mat-icon-button aria-label="Open Menu">
             <mat-icon>menu</mat-icon>
           </button>
           <span>{{ title }}</span>
           <span class="toolbar-spacer"></span>
-          <md-top-menu></md-top-menu>
+          <md-top-menu [icon]="icon" [logoutUrl]="logoutUrl"></md-top-menu>
         </md-header>
         <md-body>
           <ng-content></ng-content>
@@ -38,6 +38,11 @@ import {ScreenView} from "../../models";
 export class MdDashboardLayout {
   @Input()
   title = "App Title";
+  @Input()
+  icon = "account_circle";
+  @Input()
+  logoutUrl = "/logout";
+
   navigation$ = this.dashboardContainerService.getNavigation$();
   loading$ = this.dashboardContainerService.getLoading$();
   screen$ = this.breakpoint.getScreen$();

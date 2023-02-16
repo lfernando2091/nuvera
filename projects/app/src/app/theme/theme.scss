@@ -3,8 +3,8 @@
 
 @include mat.core();
 
-$my-primary: mat.define-palette(mat.$indigo-palette);
-$my-accent: mat.define-palette(mat.$pink-palette);
+$my-primary: mat.define-palette(mat.$green-palette);
+$my-accent: mat.define-palette(mat.$yellow-palette);
 $my-typography: mat.define-typography-config(
   $font-family: 'Roboto, monospace'
 );

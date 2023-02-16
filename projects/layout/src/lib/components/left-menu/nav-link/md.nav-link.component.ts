@@ -49,7 +49,7 @@ import {Account, LinkSection} from "../../../models";
               <div label>Menu</div>
             </md-link-button>
           </a>
-          <ng-template ngFor let-sectLinks [ngForOf]="section.links">
+          <ng-container *ngFor="let sectLinks of section.links">
             <ng-container *ngIf="!sectLinks.subLinks">
               <a [@inItem]="'in'" class="item" [routerLink]="sectLinks.link" routerLinkActive="active">
                 <md-link-button disabled routerLinkActive="active">
@@ -61,7 +61,7 @@ import {Account, LinkSection} from "../../../models";
             <ng-container *ngIf="sectLinks.subLinks">
               <md-sublink [link]="sectLinks"></md-sublink>
             </ng-container>
-          </ng-template>
+          </ng-container>
         </ng-container>
       </ng-template>
     </ng-container>

@@ -69,7 +69,7 @@ const TOP_MENU: HeaderConfig = {
 @Component({
   selector: 'app-pages',
   template: `
-    <md-dashboard-layout>
+    <md-dashboard-layout title="Portal" [logoutUrl]="'/'">
       <md-one-column class="space">
 <!--        <h1>Home</h1>-->
 <!--        <button (click)="cancelNav()">Cancel Navigation</button>-->

@@ -54,6 +54,7 @@ mat-sidenav-content, .mat-drawer-content {
   bottom: initial;
   position: absolute;
   height: 100%;
+  border-right: initial;
 
   &.radius {
     border-radius: 0 16px 16px 0;
