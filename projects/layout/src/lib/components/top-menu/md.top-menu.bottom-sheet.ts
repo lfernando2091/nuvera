@@ -6,29 +6,36 @@ import {BottomSheetResponse, HeaderSmConfig} from "./md.top-menu.model";
   selector: 'md-top-menu-bottom-sheet',
   template: `
     <div *ngIf="data.user" class="md-profile">
-      <div class="mat-h4">{{ data.user.user_name }}</div>
-      <div class="mat-h4">{{ data.user.email }}</div>
+      <div><b>{{ data.user.user_name }}</b></div>
+      <div>{{ data.user.email }}</div>
     </div>
     <mat-divider></mat-divider>
     <ng-container *ngIf="data.menu">
       <mat-nav-list>
         <ng-container *ngFor="let item of data.menu">
-          <a *ngIf="!item.disabled" [routerLink]="item.link" mat-list-item (click)="openLink($event)">
-            <mat-icon class="md-primary-color" matListItemIcon>{{ item.icon }}</mat-icon>
+          <a class="md-primary-color" *ngIf="!item.disabled" [routerLink]="item.link" mat-list-item (click)="openLink($event)">
+            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
             <span matListItemTitle>{{ item.title }}</span>
           </a>
-          <mat-list-item *ngIf="item.disabled" disabled>
-            <mat-icon class="md-primary-color" matListItemIcon>{{ item.icon }}</mat-icon>
+          <mat-list-item class="md-primary-color"  *ngIf="item.disabled" disabled>
+            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
             <span matListItemTitle>{{ item.title }}</span>
           </mat-list-item>
         </ng-container>
       </mat-nav-list>
       <mat-divider></mat-divider>
       <mat-nav-list>
-        <a mat-list-item [routerLink]="data.logoutUrl" (click)="openLink($event)">
-          <mat-icon class="md-primary-color" matListItemIcon>logout</mat-icon>
+        <a class="md-primary-color" mat-list-item [routerLink]="data.logoutUrl" (click)="openLink($event)">
+          <mat-icon matListItemIcon>logout</mat-icon>
           <span matListItemTitle>Logout</span>
         </a>
+      </mat-nav-list>
+      <mat-divider></mat-divider>
+      <mat-nav-list>
+        <mat-list-item class="md-primary-color" (click)="openLink($event)">
+          <mat-icon matListItemIcon>close</mat-icon>
+          <span matListItemTitle>Cancel</span>
+        </mat-list-item>
       </mat-nav-list>
     </ng-container>
   `,
