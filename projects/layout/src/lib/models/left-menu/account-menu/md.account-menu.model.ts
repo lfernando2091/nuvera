@@ -1,4 +1,4 @@
-export enum Role {
+export enum MdRole {
   Genesis = "Genesis",
   Owner = "Owner",
   Admin = "Admin",
@@ -9,7 +9,7 @@ export enum Role {
 }
 
 export interface Account {
-  role: Role;
+  role: MdRole | string;
   business: Business;
 }
 

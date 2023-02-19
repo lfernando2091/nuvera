@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {HeaderConfig} from "../../../../layout/src/lib/components";
 import {MdDashboardContainerService} from "../../../../layout/src/lib/services";
-import {Account, LinkSection, Role} from "../../../../layout/src/lib/models";
+import {Account, LinkSection, MdRole} from "../../../../layout/src/lib/models";
 import {MdDrawerService} from "../../../../layout/src/lib/services";
 import {PanelRightComponent} from "./panel-right/panel-right.component";
 
@@ -45,11 +45,11 @@ const NAV_MENU: LinkSection[] = [
 const logo1 = "https://angular-material.fusetheme.com/assets/images/logo/logo.svg";
 
 const ACCOUNTS: Account[] = [
-  { role: Role.Admin, business: { id: "0", name: "Account 1", logo: logo1, description: "Account Description 1" } },
-  { role: Role.Creator, business: { id: "1", name: "Account 2", logo: logo1, description: "Account Description 2" } },
-  { role: Role.Owner, business: { id: "2", name: "Account 3", logo: logo1, description: "Account Description 3" } },
-  { role: Role.Viewer, business: { id: "3", name: "Account 4", logo: logo1, description: "Account Description 4" } },
-  { role: Role.Editor, business: { id: "4", name: "Account 5", logo: logo1, description: "Account Description 5" } }
+  { role: MdRole.Admin, business: { id: "0", name: "Account 1", logo: logo1, description: "Account Description 1" } },
+  { role: MdRole.Creator, business: { id: "1", name: "Account 2", logo: logo1, description: "Account Description 2" } },
+  { role: MdRole.Owner, business: { id: "2", name: "Account 3", logo: logo1, description: "Account Description 3" } },
+  { role: MdRole.Viewer, business: { id: "3", name: "Account 4", logo: logo1, description: "Account Description 4" } },
+  { role: MdRole.Editor, business: { id: "4", name: "Account 5", logo: logo1, description: "Account Description 5" } }
 ];
 
 const TOP_MENU: HeaderConfig = {
