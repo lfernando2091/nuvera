@@ -7,6 +7,7 @@
 
   body {
     background-color: mat.get-color-from-palette($primary-palette, 50, 0.3);
+    color: mat.get-color-from-palette($primary-palette, 900);
   }
 
   * {

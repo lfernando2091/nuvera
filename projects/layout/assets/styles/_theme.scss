@@ -10,10 +10,12 @@
 @use './components/md.toggle-button.component-theme' as toggle-button-theme;
 @use './components/md.account-info.component-theme' as account-info-theme;
 @use './components/md.account-menu.component-theme' as account-menu-theme;
+@use './components/md.nuvera.global-theme' as nuvera-global-theme;
 
 @mixin theme($theme) {
   $color-config: mat.get-color-config($theme);
   @if $color-config != null {
+    @include nuvera-global-theme.config($theme);
     @include dash-container-theme.color($theme);
     @include header-theme.color($theme);
     @include footer-theme.color($theme);

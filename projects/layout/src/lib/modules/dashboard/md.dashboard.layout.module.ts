@@ -24,13 +24,12 @@ import {MdDrawerControllerService} from "../../services/dashboard/md.drawer-cont
 import {Unsubscribe} from "../../utils";
 import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 import {MatListModule} from "@angular/material/list";
+import {MdSharedModule} from "../shared/md.shared.module";
 
 const COMPONENTS = [
   MdDashboardContainer,
   MdDashboardLayout,
   MdHeaderComponent,
-  MdBodyComponent,
-  MdFooterComponent,
   MdOneColumnComponent,
   MdTopMenuComponent,
   MdTopMenuBottomSheet,
@@ -64,6 +63,7 @@ const MATERIAL_UI = [
     RouterModule,
     LayoutModule,
     PortalModule,
+    MdSharedModule,
     ...MATERIAL_UI
   ],
   exports: [
