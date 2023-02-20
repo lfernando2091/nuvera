@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component} from "@angular/core";
+import {ChangeDetectionStrategy, Component, OnInit} from "@angular/core";
+import {MdDashboardLayoutService} from "../../../../layout/src/lib/services";
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,14 @@ import {ChangeDetectionStrategy, Component} from "@angular/core";
   styleUrls: ["./login.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
+  constructor(
+    private layoutService: MdDashboardLayoutService
+  ) {
 
+  }
+
+  ngOnInit(): void {
+    this.layoutService.setLoading(false);
+  }
 }

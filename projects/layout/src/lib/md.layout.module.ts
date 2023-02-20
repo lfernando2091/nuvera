@@ -1,5 +1,9 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import {MdDashboardBreakpointsService, MdDashboardContainerService, MdDashboardLayoutService} from "./services";
+import {
+  MdDashboardBreakpointsService,
+  MdDashboardContainerService,
+  MdDashboardLayoutService
+} from "./services";
 
 @NgModule({})
 export class MdLayoutModule {

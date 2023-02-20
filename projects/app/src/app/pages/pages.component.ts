@@ -1,6 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {HeaderConfig} from "../../../../layout/src/lib/components";
-import {MdDashboardContainerService} from "../../../../layout/src/lib/services";
+import {
+  MdDashboardContainerService,
+  MdDashboardLayoutService
+} from "../../../../layout/src/lib/services";
 import {Account, LinkSection, MdRole} from "../../../../layout/src/lib/models";
 import {MdDrawerService} from "../../../../layout/src/lib/services";
 import {PanelRightComponent} from "./panel-right/panel-right.component";
@@ -89,7 +92,8 @@ export class PagesComponent implements OnInit{
 
   constructor(
     private dashboard: MdDashboardContainerService,
-    private mdDrawer: MdDrawerService
+    private mdDrawer: MdDrawerService,
+    private layoutService: MdDashboardLayoutService
   ) {
   }
 
@@ -116,7 +120,7 @@ export class PagesComponent implements OnInit{
       if (TOP_MENU.user) {
         this.dashboard.setUser$(TOP_MENU.user);
       }
-      this.dashboard.setLoading$(false);
+      this.layoutService.setLoading(false);
     }, 3000);
   }
 }

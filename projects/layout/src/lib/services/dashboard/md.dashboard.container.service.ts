@@ -11,7 +11,6 @@ export class MdDashboardContainerService {
   private _navigation$ = new BehaviorSubject<boolean>(true);
   private _headerMenu$ = new BehaviorSubject<HeaderMenu[] | null>(null);
   private _user$ = new BehaviorSubject<User | null>(null);
-  private _loading$ = new BehaviorSubject<boolean>(true);
 
   constructor() {
   }
@@ -86,13 +85,5 @@ export class MdDashboardContainerService {
 
   getUserData() {
     return this._user$.getValue();
-  }
-
-  setLoading$(value: boolean) {
-    this._loading$.next(value);
-  }
-
-  getLoading$() {
-    return this._loading$.asObservable();
   }
 }

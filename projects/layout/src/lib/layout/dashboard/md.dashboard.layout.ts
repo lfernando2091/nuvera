@@ -1,7 +1,9 @@
-import {ChangeDetectionStrategy, Component, Input, ViewChild} from "@angular/core";
-import {MdDashboardContainer} from "../../containers";
-import {HeaderConfig} from "../../components";
-import {MdDashboardBreakpointsService, MdDashboardContainerService} from "../../services";
+import {ChangeDetectionStrategy, Component, Input} from "@angular/core";
+import {
+  MdDashboardBreakpointsService,
+  MdDashboardContainerService,
+  MdDashboardLayoutService
+} from "../../services";
 import {ScreenView} from "../../models";
 
 @Component({
@@ -44,12 +46,13 @@ export class MdDashboardLayout {
   logoutUrl = "/logout";
 
   navigation$ = this.dashboardContainerService.getNavigation$();
-  loading$ = this.dashboardContainerService.getLoading$();
+  loading$ = this.layoutService.loading$();
   screen$ = this.breakpoint.getScreen$();
   screenTypes = ScreenView;
 
   constructor(
     private dashboardContainerService: MdDashboardContainerService,
+    private layoutService: MdDashboardLayoutService,
     private breakpoint: MdDashboardBreakpointsService
   ) {
   }

@@ -1,9 +1,15 @@
 import {NgModule} from "@angular/core";
 import {MdOneColumnLayout} from "../../layout";
 import {MdSharedModule} from "../shared/md.shared.module";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {CommonModule} from "@angular/common";
 
 const COMPONENTS = [
   MdOneColumnLayout
+];
+
+const MATERIAL_UI = [
+  MatProgressBarModule
 ];
 
 @NgModule({
@@ -11,7 +17,9 @@ const COMPONENTS = [
     ...COMPONENTS
   ],
   imports: [
-    MdSharedModule
+    MdSharedModule,
+    CommonModule,
+    ...MATERIAL_UI
   ],
   exports: [
     ...COMPONENTS
