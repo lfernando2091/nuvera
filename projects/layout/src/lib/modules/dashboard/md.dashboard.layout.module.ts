@@ -2,9 +2,7 @@ import {NgModule} from "@angular/core";
 import {MdDashboardContainer} from "../../containers";
 import {MdDashboardLayout} from "../../layout";
 import {
-  MdAccountInfoComponent, MdAccountMenuComponent,
-  MdBodyComponent, MdDrawerComponent,
-  MdFooterComponent,
+  MdAccountInfoComponent, MdAccountMenuComponent, MdDrawerComponent,
   MdHeaderComponent, MdLinkButtonComponent, MdNavLinkComponent,
   MdOneColumnComponent, MdRailMenuComponent, MdSublinkComponent, MdToggleButtonComponent, MdTopMenuBottomSheet,
   MdTopMenuComponent

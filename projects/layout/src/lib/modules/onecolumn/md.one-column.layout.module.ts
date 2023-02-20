@@ -6,17 +6,12 @@ const COMPONENTS = [
   MdOneColumnLayout
 ];
 
-// const MATERIAL_UI = [
-//
-// ];
-
 @NgModule({
   declarations: [
     ...COMPONENTS
   ],
   imports: [
     MdSharedModule
-    // ...MATERIAL_UI
   ],
   exports: [
     ...COMPONENTS
