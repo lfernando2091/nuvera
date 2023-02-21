@@ -1,6 +1,6 @@
 {
   "name": "nuvera",
-  "version": "0.0.0",
+  "version": "0.0.0-1-dev-pre-alpha",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
