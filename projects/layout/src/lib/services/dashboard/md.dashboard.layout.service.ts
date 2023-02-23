@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable()
 export class MdDashboardLayoutService {
@@ -9,7 +9,11 @@ export class MdDashboardLayoutService {
     this._loading$.next(value);
   }
 
-  loading$() {
+  loading$(): Observable<boolean> {
     return this._loading$.asObservable();
+  }
+
+  get loadingData(): boolean {
+    return this._loading$.getValue();
   }
 }

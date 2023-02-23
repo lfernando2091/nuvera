@@ -33,22 +33,23 @@ import {MdDrawerControllerService} from "../../services/dashboard/md.drawer-cont
 
         <mat-drawer-content>
           <section class="main-section">
-            <md-rail-menu *ngIf="observables.navigation && observables.sections"
-                          [class.open]="observables.screen === screenTypes.Normal" [sections]="observables.sections">
-            <!--<md-toggle-button topButton>
-                <mat-icon first>sync_alt</mat-icon>
-                <mat-icon second>home</mat-icon>
-              </md-toggle-button>
-              <md-toggle-button bottomButton>
-                <mat-icon first>sync_alt</mat-icon>
-                <mat-icon second>home</mat-icon>
-              </md-toggle-button>
-            -->
-              <button *ngIf="observables.navigation"
-                      (click)="onOpenDrawer()" mat-icon-button aria-label="Open Menu" topButton>
-                <mat-icon>menu</mat-icon>
-              </button>
-            </md-rail-menu>
+            <ng-container *ngIf="observables.navigation">
+              <md-rail-menu *ngIf="observables.sections"
+                            [class.open]="observables.screen === screenTypes.Normal" [sections]="observables.sections">
+              <!--<md-toggle-button topButton>
+                  <mat-icon first>sync_alt</mat-icon>
+                  <mat-icon second>home</mat-icon>
+                </md-toggle-button>
+                <md-toggle-button bottomButton>
+                  <mat-icon first>sync_alt</mat-icon>
+                  <mat-icon second>home</mat-icon>
+                </md-toggle-button>
+              -->
+                <button (click)="onOpenDrawer()" mat-icon-button aria-label="Open Menu" topButton>
+                  <mat-icon>menu</mat-icon>
+                </button>
+              </md-rail-menu>
+            </ng-container>
 
             <main class="md-scroll-content">
               <div class="md-body-view">

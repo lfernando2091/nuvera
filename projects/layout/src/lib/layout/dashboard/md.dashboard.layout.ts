@@ -17,10 +17,12 @@ import {ScreenView} from "../../models";
       <mat-progress-bar *ngIf="observables.loading" color="accent" mode="indeterminate"></mat-progress-bar>
       <md-dashboard-container>
         <md-header role="heading" class="single-row">
-          <button *ngIf="observables.screen === screenTypes.Small && observables.navigation"
-                  (click)="onOpenDrawer()" mat-icon-button aria-label="Open Menu">
-            <mat-icon>menu</mat-icon>
-          </button>
+          <ng-container *ngIf="observables.navigation">
+            <button *ngIf="observables.screen === screenTypes.Small"
+                    (click)="onOpenDrawer()" mat-icon-button aria-label="Open Menu">
+              <mat-icon>menu</mat-icon>
+            </button>
+          </ng-container>
           <span>{{ title }}</span>
           <span class="toolbar-spacer"></span>
           <md-top-menu [icon]="icon" [logoutUrl]="logoutUrl"></md-top-menu>
