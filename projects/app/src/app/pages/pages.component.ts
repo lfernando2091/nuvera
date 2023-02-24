@@ -97,10 +97,6 @@ export class PagesComponent implements OnInit{
   ) {
   }
 
-  cancelNav() {
-    this.dashboard.setNavigation$(false);
-  }
-
   openDrawer() {
     this.mdDrawer
       .open(PanelRightComponent, { title: "My Awesome title here", data: { name: "luis" } })
